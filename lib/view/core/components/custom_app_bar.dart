@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:realstate/config/theme/themecolor.dart';
+import 'package:realstate/view/config/theme/themecolor.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
