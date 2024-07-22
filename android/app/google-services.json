@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "604942026658",
+    "project_id": "realstate-3e60d",
+    "storage_bucket": "realstate-3e60d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:604942026658:android:ba39b8f0bc54d8f1a914fb",
+        "android_client_info": {
+          "package_name": "com.hifah.realestate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjlwPMl_w8T4ogMubk24r5cBrtcueMyS8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
