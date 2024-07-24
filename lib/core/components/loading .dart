@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:realstate/controllers/loading_controller.dart';
 
-
 class LoadingWidget extends StatelessWidget {
   LoadingWidget({Key? key}) : super(key: key);
   final loading = Get.find<LoadingController>();
@@ -20,10 +19,12 @@ class LoadingWidget extends StatelessWidget {
           color: Colors.black54.withOpacity(0.5),
           child: Center(
             child: SizedBox(
-              // width: 32,
-              // height: 32,
+              width: 32,
+              height: 32,
               // child:  Lottie.asset('images/loading.json'),
-              // child: Circular,
+              child: CircularProgressIndicator(
+                color: Colors.white,
+              ),
             ),
           ),
         ));

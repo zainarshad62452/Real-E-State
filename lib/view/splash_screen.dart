@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:realstate/services/Reception.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key})
@@ -17,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     var mediaQueryData = MediaQuery.of(context);
     Future.delayed(const Duration(seconds: 2), () async {
-      // await Reception().userReception();
+      await Reception().userReception();
     });
     return SafeArea(
       child: Scaffold(

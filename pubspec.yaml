@@ -46,6 +46,10 @@ dependencies:
   firebase_storage: ^12.1.1
   cloud_firestore: ^5.1.0
 
+  # Utils
+  cached_network_image: ^3.3.0
+  flutter_svg: ^2.0.9
+
 
 ev_dependencies:
   flutter_test:
@@ -70,9 +74,18 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets: 
+    - assets/
+    - assets/images/
+  fonts: 
+    - family: Poppins
+      fonts: 
+        - asset: assets/fonts/PoppinsSemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/PoppinsMedium.ttf
+          weight: 500
+        - asset: assets/fonts/PoppinsRegular.ttf
+          weight: 400
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

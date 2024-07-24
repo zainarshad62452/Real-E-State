@@ -18,6 +18,8 @@ class PropertyModel {
   bool? isSold;
   List<String>? propertyImages;
   String? appartmentType;
+  double? rating;
+  List<Review>? reviews;
 
   PropertyModel({
     this.uid,
@@ -39,8 +41,9 @@ class PropertyModel {
     this.isSold,
     this.propertyImages,
     this.appartmentType,
+    this.rating,
+    this.reviews,
   });
-
 
   factory PropertyModel.fromJson(Map<String, dynamic> json) {
     return PropertyModel(
@@ -65,9 +68,12 @@ class PropertyModel {
           ?.map((item) => item as String)
           .toList(),
       appartmentType: json['appartmentType'] as String?,
+      rating: json['rating'] as double?,
+      reviews: (json['reviews'] as List<dynamic>?)
+          ?.map((item) => Review.fromJson(item as Map<String, dynamic>))
+          .toList(),
     );
   }
-
 
   Map<String, dynamic> toJson() {
     return {
@@ -90,6 +96,40 @@ class PropertyModel {
       'isSold': isSold,
       'propertyImages': propertyImages,
       'appartmentType': appartmentType,
+      'rating': rating,
+      'reviews': reviews?.map((item) => item.toJson()).toList(),
+    };
+  }
+}
+
+class Review {
+  String? userId;
+  String? comment;
+  DateTime? date;
+  double? rating;
+
+  Review({
+    this.userId,
+    this.comment,
+    this.date,
+    this.rating,
+  });
+
+  factory Review.fromJson(Map<String, dynamic> json) {
+    return Review(
+      userId: json['userId'] as String?,
+      comment: json['comment'] as String?,
+      date: DateTime.tryParse(json['date'] as String),
+      rating: json['rating'] as double?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'userId': userId,
+      'comment': comment,
+      'date': date?.toIso8601String(),
+      'rating': rating,
     };
   }
 }

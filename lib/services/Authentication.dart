@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:realstate/controllers/loading_controller.dart';
 import 'package:realstate/core/components/snackbar.dart';
+import 'package:realstate/core/routes/app_routes.dart';
+import 'package:realstate/view/auth/login_screen/login_screen.dart';
 import 'Reception.dart';
 import 'user_services.dart';
 
@@ -12,8 +14,7 @@ class Authentication {
       {required String name,
       required String email,
       required String pass,
-      String? address,
-      String? phoneNumber,
+      required String phoneNumber,
       required String userType}) async {
     loading(true);
     try {
@@ -26,11 +27,9 @@ class Authentication {
               user: user.user!,
               phoneNumber: phoneNumber,
               userType: userType);
-        } else if (userType == "buyer") {
+        } else if (userType == "buyer") {}
 
-        }
-
-        // Get.offAll(()=>EmailVerification());
+        Reception().userReception();
         loading(false);
       } else {
         loading(false);
@@ -42,7 +41,7 @@ class Authentication {
       loading(false);
       alertSnackbar(e.toString().contains(']')
           ? e.toString().split(']').last
-          : e.toString()); //TODO firebase errors list
+          : e.toString());
     }
   }
 
@@ -82,7 +81,7 @@ class Authentication {
         if (value.user != null) {
           loading(false);
           // if (auth.currentUser!.emailVerified)
-          // Reception().userReception();
+          Reception().userReception();
           // else
           // Get.offAll(() => EmailVerification());
         } else {
@@ -125,8 +124,7 @@ class Authentication {
   signOut() async {
     try {
       await auth.signOut();
-      Get.put(LoadingController());
-      // Get.offAll(() => LoginPage());
+      Get.offAllNamed(AppRoutes.loginScreen);
     } catch (e) {
       snackbar("Error Signing Out", e.toString()); //TODO firebase exception
     }

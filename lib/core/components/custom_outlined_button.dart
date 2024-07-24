@@ -1,18 +1,19 @@
-// ignore: must_be_immutable
 import 'package:flutter/material.dart';
 
-class CustomButton extends StatelessWidget {
+class CustomOutlineButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
-  final Color backgroundColor;
+  final Color borderColor;
   final Color textColor;
+  final Color backgroundColor;
 
-  const CustomButton({
+  const CustomOutlineButton({
     Key? key,
     required this.text,
     required this.onPressed,
-    this.backgroundColor = const Color(0XFF075EF5),
-    this.textColor = const Color(0XFFFFFFFF),
+    this.borderColor = const Color(0XFFFFFFFF),
+    this.textColor = const Color(0XFF075EF5),
+    this.backgroundColor = const Color(0XFFFFFFFF),
   }) : super(key: key);
 
   @override
@@ -20,8 +21,9 @@ class CustomButton extends StatelessWidget {
     return SizedBox(
       width: double.maxFinite,
       height: 44,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
+      child: OutlinedButton(
+        style: OutlinedButton.styleFrom(
+          side: BorderSide(color: borderColor, width: 1.5),
           backgroundColor: backgroundColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),

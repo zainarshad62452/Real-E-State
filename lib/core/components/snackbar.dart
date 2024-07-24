@@ -8,5 +8,7 @@ snackbar(String title, String text) {
 
 alertSnackbar(String text) {
   Get.snackbar("Alert", text,
-      snackPosition: SnackPosition.TOP, backgroundColor: Colors.red);
+      snackPosition: SnackPosition.TOP,
+      backgroundColor: Colors.red,
+      colorText: Colors.white);
 }
