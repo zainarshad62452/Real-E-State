@@ -1,9 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:realstate/core/config/theme/state.dart';
 import 'package:realstate/firebase_options.dart';
-import 'package:realstate/view/config/theme/state.dart';
-import 'package:realstate/view/presentation/splash_screen.dart';
+import 'package:realstate/view/splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

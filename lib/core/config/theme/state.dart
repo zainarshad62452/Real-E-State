@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:realstate/view/config/theme/themedark.dart';
-import 'package:realstate/view/config/theme/themelight.dart';
+import 'package:realstate/core/config/theme/themedark.dart';
+import 'package:realstate/core/config/theme/themelight.dart';
 
 enum AppTheme { light, dark }
 

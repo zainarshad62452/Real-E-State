@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:realstate/controllers/loading_controller.dart';
 import 'package:realstate/models/property_model.dart';
-import 'package:realstate/view/core/components/snackbar.dart';
+import 'package:realstate/core/components/snackbar.dart';
 
 class PropertyServices {
   final firestore = FirebaseFirestore.instance;

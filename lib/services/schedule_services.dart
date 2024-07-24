@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:realstate/controllers/loading_controller.dart';
 import 'package:realstate/models/schedule_model.dart';
-import 'package:realstate/view/core/components/snackbar.dart';
+import 'package:realstate/core/components/snackbar.dart';
 
 class ScheduleServices {
   final firestore = FirebaseFirestore.instance;

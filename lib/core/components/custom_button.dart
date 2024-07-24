@@ -1,8 +1,8 @@
 // ignore: must_be_immutable
 import 'package:flutter/material.dart';
-import 'package:realstate/view/config/theme/themecolor.dart';
-import 'package:realstate/view/core/extension/media_query.dart';
-import 'package:realstate/view/core/extension/widget_gap.dart';
+import 'package:realstate/core/config/theme/themecolor.dart';
+import 'package:realstate/core/extension/media_query.dart';
+import 'package:realstate/core/extension/widget_gap.dart';
 
 class CustomButton extends StatelessWidget {
   VoidCallback onPressed;

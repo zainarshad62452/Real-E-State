@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:realstate/controllers/loading_controller.dart';
 import 'package:realstate/models/user_model.dart';
-import 'package:realstate/view/core/components/snackbar.dart';
+import 'package:realstate/core/components/snackbar.dart';
 import 'Reception.dart';
 
 class UserServices {
