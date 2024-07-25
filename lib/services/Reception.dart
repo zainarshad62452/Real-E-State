@@ -5,6 +5,7 @@ import 'package:realstate/controllers/loading_controller.dart';
 import 'package:realstate/core/routes/app_routes.dart';
 import 'package:realstate/view/auth/email_verification_screen/emailVerification.dart';
 import 'package:realstate/view/auth/login_screen/login_screen.dart';
+import 'package:realstate/view/buyer/home_screen/tab_container_controller.dart';
 import 'Authentication.dart';
 
 class Reception {
@@ -34,11 +35,15 @@ class Reception {
       } else if (type == "seller") {
         loading(false);
         print("::: Going to home");
-        Get.offAllNamed(AppRoutes.propertAppHomeScreenTabContainerScreen);
+  Get.put(HomeScreenPageController());
+
+        Get.offAllNamed(AppRoutes.buyerDashboard);
       } else if (type == "buyer") {
         loading(false);
         print("::: Going to home");
-        Get.offAllNamed(AppRoutes.propertAppHomeScreenTabContainerScreen);
+  Get.put(HomeScreenPageController());
+
+        Get.offAllNamed(AppRoutes.buyerDashboard);
       } else {
         Authentication().signOut();
       }

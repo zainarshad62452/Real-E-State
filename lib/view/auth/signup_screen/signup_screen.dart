@@ -6,6 +6,7 @@ import 'package:realstate/core/components/custom_button.dart';
 import 'package:realstate/core/components/custom_outlined_button.dart';
 import 'package:realstate/core/components/custom_textfied.dart';
 import 'package:realstate/core/components/loading%20.dart';
+import 'package:realstate/core/utils/responsive.dart';
 import 'signup_controller.dart';
 
 class SignupScreen extends GetWidget<SignupController> {
@@ -20,42 +21,74 @@ class SignupScreen extends GetWidget<SignupController> {
             Scaffold(
               resizeToAvoidBottomInset: false,
               backgroundColor: const Color(0XFFF2F3F3),
-              appBar: const CustomAppBar(
-                title: "Create account",
-                isLeading: true,
-              ),
+              appBar: Responsive.isDesktop(context)
+                  ? PreferredSize(preferredSize: Size.zero, child: SizedBox())
+                  : CustomAppBar(
+                      title: "Create account",
+                      isLeading: true,
+                    ),
               body: SingleChildScrollView(
-                child: Container(
-                  width: double.maxFinite,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 18,
-                    vertical: 20,
-                  ),
-                  child: Column(
-                    children: [
-                      _buildSignUpForm(),
-                      const SizedBox(height: 48),
-                      _buildSignUpButton(),
-                      const SizedBox(height: 12),
-                      const Text(
-                        "OR",
-                        style: TextStyle(
-                          color: Color(0XFF000000),
-                          fontSize: 14,
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      _buildLoginButton(),
-                    ],
-                  ),
+                  child: Responsive(
+                mobile: _buildPhone(double.maxFinite),
+                tablet: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    _buildPhone(400),
+                  ],
                 ),
-              ),
+                desktop: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    _buildPhone(500),
+                  ],
+                ),
+              )),
             ),
             loading() ? LoadingWidget() : const SizedBox(),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildPhone(double width) {
+    return Container(
+      width: width,
+      decoration: width == 400 || width == 500
+          ? BoxDecoration(
+              border: Border.all(color: Colors.black38),
+              // boxShadow: [
+              //     BoxShadow(
+              //         color: Colors.black,
+              //         offset: Offset(0.5, 1.5),
+              //         blurRadius: 0.5)
+              //   ]
+            )
+          : BoxDecoration(),
+      padding: EdgeInsets.symmetric(
+        horizontal: 18,
+        vertical: width == 500 ? 10 : 20,
+      ),
+      child: Column(
+        children: [
+          _buildSignUpForm(width),
+          const SizedBox(height: 48),
+          _buildSignUpButton(),
+          const SizedBox(height: 12),
+          const Text(
+            "OR",
+            style: TextStyle(
+              color: Color(0XFF000000),
+              fontSize: 14,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const SizedBox(height: 12),
+          _buildLoginButton(),
+        ],
       ),
     );
   }
@@ -95,9 +128,9 @@ class SignupScreen extends GetWidget<SignupController> {
   }
 
   /// Section Widget
-  Widget _buildSignUpForm() {
+  Widget _buildSignUpForm(double width) {
     return SizedBox(
-      width: double.maxFinite,
+      width: width,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

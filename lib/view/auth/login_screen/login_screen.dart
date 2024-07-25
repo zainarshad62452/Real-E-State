@@ -7,6 +7,7 @@ import 'package:realstate/core/components/custom_button.dart';
 import 'package:realstate/core/components/custom_outlined_button.dart';
 import 'package:realstate/core/components/custom_textfied.dart';
 import 'package:realstate/core/components/loading%20.dart';
+import 'package:realstate/core/utils/responsive.dart';
 import 'login_controller.dart';
 
 class LoginScreen extends GetWidget<LoginController> {
@@ -24,37 +25,68 @@ class LoginScreen extends GetWidget<LoginController> {
                 isLeading: false,
               ),
               body: SingleChildScrollView(
-                child: Container(
-                  width: double.maxFinite,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 18,
-                    vertical: 28,
-                  ),
-                  child: Column(
-                    children: [
-                      _buildSignUpForm(),
-                      const SizedBox(height: 48),
-                      _buildLoginButton(),
-                      const SizedBox(height: 18),
-                      const Text(
-                        "OR",
-                        style: TextStyle(
-                          color: Color(0XFF000000),
-                          fontSize: 14,
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const SizedBox(height: 18),
-                      _buildSignUpButton(),
-                    ],
-                  ),
-                ),
+                child: Responsive(
+                    mobile: _phoneWidget(double.maxFinite),
+                    tablet: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        _phoneWidget(400),
+                      ],
+                    ),
+                    desktop: Row(
+                      // mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        _phoneWidget(500),
+                      ],
+                    )),
               ),
             ),
             loading() ? LoadingWidget() : SizedBox(),
           ],
         ));
+  }
+
+  Widget _phoneWidget(double width) {
+    return Container(
+      width: width,
+      decoration: width == 400 || width == 500
+          ? BoxDecoration(
+              border: Border.all(color: Colors.black38),
+              // boxShadow: [
+              //     BoxShadow(
+              //         color: Colors.black,
+              //         offset: Offset(0.5, 1.5),
+              //         blurRadius: 0.5)
+              //   ]
+            )
+          : BoxDecoration(),
+      padding: EdgeInsets.symmetric(
+        horizontal: 18,
+        vertical: width == 500 ? 10 : 20,
+      ),
+      child: Column(
+        children: [
+          _buildSignUpForm(width),
+          const SizedBox(height: 48),
+          _buildLoginButton(),
+          const SizedBox(height: 18),
+          const Text(
+            "OR",
+            style: TextStyle(
+              color: Color(0XFF000000),
+              fontSize: 14,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const SizedBox(height: 18),
+          _buildSignUpButton(),
+        ],
+      ),
+    );
   }
 
   /// Section Widget
@@ -75,9 +107,9 @@ class LoginScreen extends GetWidget<LoginController> {
   }
 
   /// Section Widget
-  Widget _buildSignUpForm() {
+  Widget _buildSignUpForm(double width) {
     return SizedBox(
-      width: double.maxFinite,
+      width: width,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

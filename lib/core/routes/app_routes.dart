@@ -4,13 +4,11 @@ import 'package:realstate/view/auth/login_screen/login_controller.dart';
 import 'package:realstate/view/auth/login_screen/login_screen.dart';
 import 'package:realstate/view/auth/signup_screen/signup_controller.dart';
 import 'package:realstate/view/auth/signup_screen/signup_screen.dart';
-import 'package:realstate/view/fillter_screen/propert_app_home_filter_controller.dart';
-import 'package:realstate/view/fillter_screen/propert_app_home_filter_screen.dart';
-import 'package:realstate/view/home_screen/home_screen.dart';
-import 'package:realstate/view/home_screen/home_screen.dart';
-import 'package:realstate/view/home_screen/home_screen_controller.dart';
-import 'package:realstate/view/home_screen/tab_container.dart';
-import 'package:realstate/view/home_screen/tab_container_controller.dart';
+import 'package:realstate/view/buyer/dashboard/dashboard.dart';
+import 'package:realstate/view/buyer/home_screen/home_screen.dart';
+import 'package:realstate/view/buyer/home_screen/home_screen_controller.dart';
+import 'package:realstate/view/buyer/home_screen/tab_container.dart';
+import 'package:realstate/view/buyer/home_screen/tab_container_controller.dart';
 import 'package:realstate/view/splash_screen.dart';
 
 // ignore_for_file: must_be_immutable
@@ -27,6 +25,7 @@ class AppRoutes {
       '/propert_app_home_filter_screen';
 
   static const String initialRoute = '/initialRoute';
+  static const String buyerDashboard = '/buyer_dashboard';
 
   static List<GetPage> pages = [
     GetPage(
@@ -60,9 +59,9 @@ class AppRoutes {
       bindings: [PropertAppHomeScreenBinding()],
     ),
     GetPage(
-      name: propertAppHomeFilterScreen,
-      page: () => PropertAppHomeFilterScreen(),
-      bindings: [PropertAppHomeFilterBinding()],
-    ),
+          name: buyerDashboard,
+          page: () => DashboardScreen(),
+          binding: DashboardBinding(),
+        ),
   ];
 }

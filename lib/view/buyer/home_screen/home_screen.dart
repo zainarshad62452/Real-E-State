@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:realstate/core/components/hotel_card.dart';
 import 'package:realstate/core/components/property_card.dart';
 import 'package:realstate/models/property_model.dart';
-import 'package:realstate/view/home_screen/home_screen_controller.dart';
+import 'package:realstate/view/buyer/home_screen/home_screen_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key})
@@ -83,7 +83,7 @@ class HomeScreen extends StatelessWidget {
           ),
           SizedBox(height: 12),
           SizedBox(
-            height: 300,
+            height: 320,
             child: ListView.builder(
                 itemCount: 5,
                 scrollDirection: Axis.horizontal,
