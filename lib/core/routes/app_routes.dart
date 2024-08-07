@@ -4,11 +4,19 @@ import 'package:realstate/view/auth/login_screen/login_controller.dart';
 import 'package:realstate/view/auth/login_screen/login_screen.dart';
 import 'package:realstate/view/auth/signup_screen/signup_controller.dart';
 import 'package:realstate/view/auth/signup_screen/signup_screen.dart';
+import 'package:realstate/view/buyer/chats/chats_controller.dart';
+import 'package:realstate/view/buyer/chats/chats_screen.dart';
+import 'package:realstate/view/buyer/chats_details/chat_detail_controller.dart';
+import 'package:realstate/view/buyer/chats_details/chats_details_screen.dart';
 import 'package:realstate/view/buyer/dashboard/dashboard.dart';
+import 'package:realstate/view/buyer/edit_profile/edit_profile.dart';
+import 'package:realstate/view/buyer/edit_profile/edit_profile_controller.dart';
 import 'package:realstate/view/buyer/home_screen/home_screen.dart';
 import 'package:realstate/view/buyer/home_screen/home_screen_controller.dart';
 import 'package:realstate/view/buyer/home_screen/tab_container.dart';
 import 'package:realstate/view/buyer/home_screen/tab_container_controller.dart';
+import 'package:realstate/view/buyer/user_profile/user_profile.dart';
+import 'package:realstate/view/buyer/user_profile/user_profile_controller.dart';
 import 'package:realstate/view/splash_screen.dart';
 
 // ignore_for_file: must_be_immutable
@@ -26,6 +34,10 @@ class AppRoutes {
 
   static const String initialRoute = '/initialRoute';
   static const String buyerDashboard = '/buyer_dashboard';
+  static const String userProfile = '/user-profile';
+  static const String editProfile = '/edit-profile';
+  static const String chats = '/chats-screen';
+  static const String chatsDetail = '/chats-detail';
 
   static List<GetPage> pages = [
     GetPage(
@@ -48,6 +60,7 @@ class AppRoutes {
       page: () => SignupScreen(),
       bindings: [SignupBinding()],
     ),
+    
     GetPage(
       name: propertAppHomeScreenTabContainerScreen,
       page: () => HomeScreenPage(),
@@ -63,5 +76,25 @@ class AppRoutes {
           page: () => DashboardScreen(),
           binding: DashboardBinding(),
         ),
+        GetPage(
+      name: userProfile,
+      page: () => UserProfileScreen(),
+      binding: UserProfileBinding(),
+    ),
+     GetPage(
+      name: editProfile,
+      page: () => EditProfileScreen(),
+      binding: EditProfileBinding(),
+    ),
+     GetPage(
+      name: chats,
+      page: () => ChatScreen(),
+      binding: ChatsBinding(),
+    ),
+     GetPage(
+      name: chatsDetail,
+      page: () => ChatDetailScreen(),
+      binding: ChatsDetailBinding(),
+    ),
   ];
 }

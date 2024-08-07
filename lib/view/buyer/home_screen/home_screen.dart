@@ -5,6 +5,7 @@ import 'package:realstate/core/components/hotel_card.dart';
 import 'package:realstate/core/components/property_card.dart';
 import 'package:realstate/models/property_model.dart';
 import 'package:realstate/view/buyer/home_screen/home_screen_controller.dart';
+import 'package:realstate/view/buyer/home_screen/tab_container_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key})
@@ -14,6 +15,8 @@ class HomeScreen extends StatelessWidget {
 
   PropertAppHomeScreenController controller =
       Get.put(PropertAppHomeScreenController());
+
+  final homeXntr = Get.put(HomeScreenPageController());
 
   @override
   Widget build(BuildContext context) {

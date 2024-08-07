@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:realstate/controllers/loading_controller.dart';
 import 'package:realstate/core/components/snackbar.dart';
 import 'package:realstate/core/routes/app_routes.dart';
-import 'package:realstate/view/auth/login_screen/login_screen.dart';
 import 'Reception.dart';
 import 'user_services.dart';
 
@@ -21,13 +20,19 @@ class Authentication {
       final user = await auth.createUserWithEmailAndPassword(
           email: email, password: pass);
       if (user.user != null) {
-        if (userType == "seller") {
+        if (userType == "Seller") {
           UserServices().registerUser(
               name: name,
               user: user.user!,
               phoneNumber: phoneNumber,
               userType: userType);
-        } else if (userType == "buyer") {}
+        } else if (userType == "Buyer") {
+          UserServices().registerUser(
+              name: name,
+              user: user.user!,
+              phoneNumber: phoneNumber,
+              userType: userType);
+        }
 
         Reception().userReception();
         loading(false);

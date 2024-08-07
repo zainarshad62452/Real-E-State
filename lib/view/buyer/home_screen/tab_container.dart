@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:realstate/core/routes/app_routes.dart';
 import 'package:realstate/services/Authentication.dart';
 import 'package:realstate/view/buyer/home_screen/home_screen.dart';
 import 'package:realstate/view/buyer/home_screen/tab_container_controller.dart';

@@ -14,7 +14,7 @@ class SignupController extends GetxController {
   TextEditingController passwordInputController = TextEditingController();
 
   Rx<SignupModel> realEstateAppDesigenLoginModelObj = SignupModel().obs;
-   var selectedRole = ''.obs;
+  var selectedRole = ''.obs;
 
   void setRole(String role) {
     selectedRole.value = role;
@@ -41,6 +41,7 @@ class SignupController extends GetxController {
     } else if (passwordInputController.text.isEmpty) {
       alertSnackbar("Please enter password");
     } else {
+      print("::: Selected Role ${selectedRole.value}");
       await Authentication().createAccount(
           name: firstNameInputController.text.toString(),
           email: emailInputController.text.toString(),

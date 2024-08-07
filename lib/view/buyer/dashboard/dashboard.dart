@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:realstate/view/buyer/chats/chats_screen.dart';
 import 'package:realstate/view/buyer/home_screen/tab_container.dart';
+import 'package:realstate/view/buyer/user_profile/user_profile.dart';
 
 class DashboardController extends GetxController {
   var selectedIndex = 0.obs;
@@ -24,8 +26,8 @@ class DashboardScreen extends StatelessWidget {
     HomeScreenPage(),
     Center(child: Text("Not Design yet"),),
     Center(child: Text("Not Design yet"),),
-    Center(child: Text("Not Design yet"),),
-    Center(child: Text("Not Design yet"),),
+ChatScreen(),
+    UserProfileScreen()
   ];
 
   @override

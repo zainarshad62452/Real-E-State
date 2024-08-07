@@ -14,11 +14,11 @@ class HomeScreenPageController extends GetxController
   late TabController tabviewController =
       Get.put(TabController(vsync: this, length: 4));
 
-  @override
-  void onClose() {
-    super.onClose();
-    searchController.dispose();
-  }
+  // @override
+  // void onClose() {
+  //   // super.onClose();
+  //   searchController.dispose();
+  // }
 }
 
 class HomeScreenPageBindings extends Bindings {

@@ -3,8 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:realstate/controllers/loading_controller.dart';
 import 'package:realstate/core/routes/app_routes.dart';
-import 'package:realstate/view/auth/email_verification_screen/emailVerification.dart';
-import 'package:realstate/view/auth/login_screen/login_screen.dart';
 import 'package:realstate/view/buyer/home_screen/tab_container_controller.dart';
 import 'Authentication.dart';
 
@@ -32,16 +30,16 @@ class Reception {
       if (!FirebaseAuth.instance.currentUser!.emailVerified) {
         FirebaseAuth.instance.currentUser!.sendEmailVerification();
         Get.toNamed(AppRoutes.emailVerificationScreen);
-      } else if (type == "seller") {
+      } else if (type == "Seller") {
         loading(false);
         print("::: Going to home");
-  Get.put(HomeScreenPageController());
+        Get.put(HomeScreenPageController());
 
         Get.offAllNamed(AppRoutes.buyerDashboard);
-      } else if (type == "buyer") {
+      } else if (type == "Buyer") {
         loading(false);
         print("::: Going to home");
-  Get.put(HomeScreenPageController());
+        Get.put(HomeScreenPageController());
 
         Get.offAllNamed(AppRoutes.buyerDashboard);
       } else {

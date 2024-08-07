@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:realstate/controllers/loading_controller.dart';
 import 'package:realstate/core/components/custom_app_bar.dart';
 import 'package:realstate/core/components/custom_button.dart';
