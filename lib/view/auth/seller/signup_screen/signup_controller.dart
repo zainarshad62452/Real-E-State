@@ -4,17 +4,17 @@ import 'package:realstate/core/components/snackbar.dart';
 import 'package:realstate/core/routes/app_routes.dart';
 import 'package:realstate/services/Authentication.dart';
 
-class SignupModel {}
+class SellerSignupModel {}
 
-class SignupController extends GetxController {
+class SellerSignupController extends GetxController {
   TextEditingController emailInputController = TextEditingController();
   TextEditingController phoneInputController = TextEditingController();
   TextEditingController firstNameInputController = TextEditingController();
 
   TextEditingController passwordInputController = TextEditingController();
 
-  Rx<SignupModel> realEstateAppDesigenLoginModelObj = SignupModel().obs;
-  var selectedRole = ''.obs;
+  Rx<SellerSignupModel> realEstateAppDesigenLoginModelObj = SellerSignupModel().obs;
+  var selectedRole = 'Seller'.obs;
 
   void setRole(String role) {
     selectedRole.value = role;
@@ -56,10 +56,10 @@ class SignupController extends GetxController {
   }
 }
 
-class SignupBinding extends Bindings {
+class SellerSignupBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => SignupController());
+    Get.lazyPut(() => SellerSignupController());
   }
 }
 

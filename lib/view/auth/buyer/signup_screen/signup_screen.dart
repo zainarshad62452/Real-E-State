@@ -6,6 +6,7 @@ import 'package:realstate/core/components/custom_button.dart';
 import 'package:realstate/core/components/custom_outlined_button.dart';
 import 'package:realstate/core/components/custom_textfied.dart';
 import 'package:realstate/core/components/loading%20.dart';
+import 'package:realstate/core/routes/app_routes.dart';
 import 'package:realstate/core/utils/responsive.dart';
 import 'signup_controller.dart';
 
@@ -73,6 +74,16 @@ class SignupScreen extends GetWidget<SignupController> {
       ),
       child: Column(
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TextButton(
+                  onPressed: () {
+                    Get.offAllNamed(AppRoutes.sellerSignupScreen);
+                  },
+                  child: Text("Signup as Seller")),
+            ],
+          ),
           _buildSignUpForm(width),
           const SizedBox(height: 48),
           _buildSignUpButton(),
@@ -207,52 +218,8 @@ class SignupScreen extends GetWidget<SignupController> {
           const SizedBox(height: 4),
           _buildPasswordInput(),
           const SizedBox(height: 12),
-          _buildRoleSelection(),
         ],
       ),
-    );
-  }
-
-  /// Section Widget
-  Widget _buildRoleSelection() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Row(
-          children: [
-            Checkbox(
-              activeColor: Color(0XFF075EF5),
-              value: controller.selectedRole.value == 'Buyer',
-              onChanged: (value) {
-                if (value == true) {
-                  controller.setRole('Buyer');
-                }
-              },
-            ),
-            Text(
-              "Buyer",
-              style: TextStyle(fontFamily: "Poppins"),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Checkbox(
-              activeColor: Color(0XFF075EF5),
-              value: controller.selectedRole.value == 'Seller',
-              onChanged: (value) {
-                if (value == true) {
-                  controller.setRole('Seller');
-                }
-              },
-            ),
-            Text(
-              "Seller",
-              style: TextStyle(fontFamily: "Poppins"),
-            ),
-          ],
-        ),
-      ],
     );
   }
 

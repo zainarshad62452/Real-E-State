@@ -6,11 +6,12 @@ import 'package:realstate/core/components/custom_button.dart';
 import 'package:realstate/core/components/custom_outlined_button.dart';
 import 'package:realstate/core/components/custom_textfied.dart';
 import 'package:realstate/core/components/loading%20.dart';
+import 'package:realstate/core/routes/app_routes.dart';
 import 'package:realstate/core/utils/responsive.dart';
 import 'login_controller.dart';
 
-class LoginScreen extends GetWidget<LoginController> {
-  const LoginScreen({Key? key}) : super(key: key);
+class SellerLoginScreen extends GetWidget<SellerLoginController> {
+  const SellerLoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class LoginScreen extends GetWidget<LoginController> {
               resizeToAvoidBottomInset: false,
               backgroundColor: const Color(0XFFF2F3F3),
               appBar: CustomAppBar(
-                title: "Login account",
+                title: "Seller Login account",
                 isLeading: false,
               ),
               body: SingleChildScrollView(
@@ -54,12 +55,6 @@ class LoginScreen extends GetWidget<LoginController> {
       decoration: width == 400 || width == 500
           ? BoxDecoration(
               border: Border.all(color: Colors.black38),
-              // boxShadow: [
-              //     BoxShadow(
-              //         color: Colors.black,
-              //         offset: Offset(0.5, 1.5),
-              //         blurRadius: 0.5)
-              //   ]
             )
           : BoxDecoration(),
       padding: EdgeInsets.symmetric(
@@ -68,6 +63,16 @@ class LoginScreen extends GetWidget<LoginController> {
       ),
       child: Column(
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TextButton(
+                  onPressed: () {
+                    Get.offAllNamed(AppRoutes.loginScreen);
+                  },
+                  child: Text("Sign in as Buyer")),
+            ],
+          ),
           _buildSignUpForm(width),
           const SizedBox(height: 48),
           _buildLoginButton(),

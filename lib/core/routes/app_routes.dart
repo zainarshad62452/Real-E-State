@@ -1,10 +1,14 @@
 import 'package:get/get.dart';
 import 'package:realstate/models/user_model1.dart';
 import 'package:realstate/view/auth/email_verification_screen/emailVerification.dart';
-import 'package:realstate/view/auth/login_screen/login_controller.dart';
-import 'package:realstate/view/auth/login_screen/login_screen.dart';
-import 'package:realstate/view/auth/signup_screen/signup_controller.dart';
-import 'package:realstate/view/auth/signup_screen/signup_screen.dart';
+import 'package:realstate/view/auth/buyer/login_screen/login_controller.dart';
+import 'package:realstate/view/auth/buyer/login_screen/login_screen.dart';
+import 'package:realstate/view/auth/buyer/signup_screen/signup_controller.dart';
+import 'package:realstate/view/auth/buyer/signup_screen/signup_screen.dart';
+import 'package:realstate/view/auth/seller/login_screen/login_controller.dart';
+import 'package:realstate/view/auth/seller/login_screen/login_screen.dart';
+import 'package:realstate/view/auth/seller/signup_screen/signup_controller.dart';
+import 'package:realstate/view/auth/seller/signup_screen/signup_screen.dart';
 import 'package:realstate/view/buyer/chat/chat_screen.dart';
 import 'package:realstate/view/buyer/chat/chats_controller.dart';
 import 'package:realstate/view/buyer/chat/recent_chat_list_screen.dart';
@@ -27,12 +31,16 @@ import 'package:realstate/view/buyer/schedule_screen/schedule_screen.dart';
 import 'package:realstate/view/buyer/schedule_screen/schedule_screen_controller.dart';
 import 'package:realstate/view/buyer/user_profile/user_profile.dart';
 import 'package:realstate/view/buyer/user_profile/user_profile_controller.dart';
+import 'package:realstate/view/seller/seller_dashboard/dashboard.dart';
+import 'package:realstate/view/seller/seller_dashboard/dashboard_controller.dart';
 import 'package:realstate/view/splash_screen.dart';
 
 // ignore_for_file: must_be_immutable
 class AppRoutes {
   static const String loginScreen = '/login_screen';
   static const String signupScreen = '/signup_screen';
+  static const String sellerLoginScreen = '/seller_login_screen';
+  static const String sellerSignupScreen = '/seller_signup_screen';
   static const String emailVerificationScreen = '/email_verfication';
   static const String propertAppHomeScreenPage =
       '/propert_app_home_screen_page';
@@ -44,6 +52,7 @@ class AppRoutes {
 
   static const String initialRoute = '/initialRoute';
   static const String buyerDashboard = '/buyer_dashboard';
+  static const String sellerDashboard = '/seller_dashboard';
   static const String userProfile = '/user-profile';
   static const String editProfile = '/edit-profile';
   static const String chats = '/chats-screen';
@@ -59,6 +68,11 @@ class AppRoutes {
       bindings: [LoginBinding()],
     ),
     GetPage(
+      name: sellerLoginScreen,
+      page: () => SellerLoginScreen(),
+      bindings: [SellerLoginBinding()],
+    ),
+    GetPage(
       name: emailVerificationScreen,
       page: () => EmailVerification(),
       bindings: [],
@@ -72,6 +86,16 @@ class AppRoutes {
       name: signupScreen,
       page: () => SignupScreen(),
       bindings: [SignupBinding()],
+    ),
+    GetPage(
+      name: sellerSignupScreen,
+      page: () => SellerSignupScreen(),
+      bindings: [SellerSignupBinding()],
+    ),
+     GetPage(
+      name: sellerDashboard,
+      page: () => SellerDashboard(),
+      bindings: [SellerDashboardBinding()],
     ),
     
     GetPage(

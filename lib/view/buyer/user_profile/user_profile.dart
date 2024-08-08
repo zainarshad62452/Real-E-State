@@ -72,11 +72,7 @@ class UserProfileScreen extends StatelessWidget {
                           label: 'Phone',
                           value: controller.user.value.phoneNumber ?? 'N/A',
                         ),
-                        const Divider(),
-                        UserInfoRow(
-                          label: 'Status',
-                          value: controller.user.value.status ?? 'N/A',
-                        ),
+                        
                         const Divider(),
                         UserInfoRow(
                           label: 'User Type',

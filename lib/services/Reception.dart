@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:realstate/controllers/loading_controller.dart';
 import 'package:realstate/core/routes/app_routes.dart';
 import 'package:realstate/view/buyer/home_screen/tab_container_controller.dart';
+import 'package:realstate/view/seller/seller_dashboard/dashboard_controller.dart';
 import 'Authentication.dart';
 
 class Reception {
@@ -33,9 +34,9 @@ class Reception {
       } else if (type == "Seller") {
         loading(false);
         print("::: Going to home");
-        Get.put(HomeScreenPageController());
+        Get.put(SellerDashboardController());
 
-        Get.offAllNamed(AppRoutes.buyerDashboard);
+        Get.offAllNamed(AppRoutes.sellerDashboard);
       } else if (type == "Buyer") {
         loading(false);
         print("::: Going to home");
