@@ -9,13 +9,12 @@ import 'package:realstate/view/auth/seller/login_screen/login_controller.dart';
 import 'package:realstate/view/auth/seller/login_screen/login_screen.dart';
 import 'package:realstate/view/auth/seller/signup_screen/signup_controller.dart';
 import 'package:realstate/view/auth/seller/signup_screen/signup_screen.dart';
+import 'package:realstate/view/buyer/buying_list/buying_list_screen.dart';
+import 'package:realstate/view/buyer/buying_property/buying_property_controller.dart';
+import 'package:realstate/view/buyer/buying_property/buying_property_screen.dart';
 import 'package:realstate/view/buyer/chat/chat_screen.dart';
 import 'package:realstate/view/buyer/chat/chats_controller.dart';
 import 'package:realstate/view/buyer/chat/recent_chat_list_screen.dart';
-import 'package:realstate/view/buyer/chats/chats_controller.dart';
-import 'package:realstate/view/buyer/chats/chats_screen.dart';
-import 'package:realstate/view/buyer/chats_details/chat_detail_controller.dart';
-import 'package:realstate/view/buyer/chats_details/chats_details_screen.dart';
 import 'package:realstate/view/buyer/dashboard/dashboard.dart';
 import 'package:realstate/view/buyer/edit_profile/edit_profile.dart';
 import 'package:realstate/view/buyer/edit_profile/edit_profile_controller.dart';
@@ -25,8 +24,9 @@ import 'package:realstate/view/buyer/home_screen/home_screen.dart';
 import 'package:realstate/view/buyer/home_screen/home_screen_controller.dart';
 import 'package:realstate/view/buyer/home_screen/tab_container.dart';
 import 'package:realstate/view/buyer/home_screen/tab_container_controller.dart';
-import 'package:realstate/view/buyer/property_detail/proper_detail_controller.dart';
-import 'package:realstate/view/buyer/property_detail/property_details_screen.dart';
+import 'package:realstate/view/buyer/rent_property_detail/rent_proper_detail_controller.dart';
+import 'package:realstate/view/buyer/rent_property_detail/rent_property_details_screen.dart';
+import 'package:realstate/view/buyer/schedule_screen/all_appointments_screen.dart';
 import 'package:realstate/view/buyer/schedule_screen/schedule_screen.dart';
 import 'package:realstate/view/buyer/schedule_screen/schedule_screen_controller.dart';
 import 'package:realstate/view/buyer/user_profile/user_profile.dart';
@@ -57,9 +57,12 @@ class AppRoutes {
   static const String editProfile = '/edit-profile';
   static const String chats = '/chats-screen';
   static const String chatsDetail = '/chats-detail';
-  static const String propertyDetail = '/property-detail';
+  static const String rentPropertyDetail = '/rent-property-detail';
   static const String scheduleScreen = '/schedule-screen';
   static const String favoritesScreen = '/favorites-screen';
+  static const String allAppointments = '/all-appointments';
+  static const String buyingList = '/buying-list';
+  static const String BuyPropertyDetail = '/buy-property-detail';
 
   static List<GetPage> pages = [
     GetPage(
@@ -133,9 +136,9 @@ class AppRoutes {
       page: () => RecentChatsListScreen(),
     ),
     GetPage(
-      name: propertyDetail,
-      page: () => PropertyDetailsScreen(),
-      binding: ProperDetailBinding(),
+      name: rentPropertyDetail,
+      page: () => RentPropertyScreen(),
+      binding: RentPropertyBinding(),
     ),
      GetPage(
       name: scheduleScreen,
@@ -146,6 +149,20 @@ class AppRoutes {
       name: favoritesScreen,
       page: () => FavoriteScren(),
       binding: FavoritesBinding(),
+    ),
+     GetPage(
+      name: allAppointments,
+      page: () => AllAppointmentsScreen(),
+    ),
+    //  GetPage(
+    //   name: RentPropertyScreen,
+    //   page: () => RentPropertyScreen(),
+    //   binding: BuyingListBinding(),
+    // ),
+     GetPage(
+      name: BuyPropertyDetail,
+      page: () => BuyPropertyScreen(),
+      binding: BuyingPropertyBinding(),
     ),
   ];
 }

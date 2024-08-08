@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:realstate/controllers/property_controller.dart';
 
-class PropertyDetailsScreen extends StatelessWidget {
+class RentPropertyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final PropertyController controller = Get.put(PropertyController());
@@ -25,49 +26,47 @@ class PropertyDetailsScreen extends StatelessWidget {
       body: Obx(() {
         final property = controller.property!.value;
 
+        if (property == null) {
+          return Center(child: CircularProgressIndicator());
+        }
+
         return SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // property.propertyImages != null &&
-              //         property.propertyImages!.isNotEmpty
-              // ?
-              Image.network(
-                'https://financialresidency.com/wp-content/uploads/2018/05/Multifamily-Housing.jpg',
-
-                // property.propertyImages![0],
-                width: double.infinity,
-                height: 250,
-                fit: BoxFit.cover,
-              ),
-              // : Container(height: 250, color: Colors.grey),
+              // Property Image
+              property.propertyImages != null && property.propertyImages!.isNotEmpty
+                  ? Image.network(
+                      property.propertyImages![0],
+                      width: double.infinity,
+                      height: 250,
+                      fit: BoxFit.cover,
+                    )
+                  : Container(height: 250, color: Colors.grey),
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // Property Title
                     Text(
                       property.title ?? '',
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.w200),
+                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
                     ),
                     SizedBox(height: 8),
+                    // Property Address
                     Text(
                       property.address ?? '',
                       style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.grey[600],
-                          fontWeight: FontWeight.w200),
+                          fontSize: 16, color: Colors.grey[600], fontWeight: FontWeight.w400),
                     ),
                     SizedBox(height: 16),
+                    // Location and Features
                     Row(
                       children: [
                         Icon(Icons.location_on, size: 18, color: Colors.grey),
                         SizedBox(width: 8),
-                        Text(
-                          'South Lahore',
-                          style: TextStyle(fontSize: 16),
-                        ),
+                        Text('South Lahore', style: TextStyle(fontSize: 16)),
                       ],
                     ),
                     SizedBox(height: 16),
@@ -82,6 +81,7 @@ class PropertyDetailsScreen extends StatelessWidget {
                       ],
                     ),
                     Divider(height: 32),
+                    // Description
                     Text(
                       'Description',
                       style: TextStyle(
@@ -95,6 +95,7 @@ class PropertyDetailsScreen extends StatelessWidget {
                       style: TextStyle(fontSize: 16, color: Colors.grey[800]),
                     ),
                     Divider(height: 32),
+                    // Owner's Info
                     Text(
                       'Owner\'s info',
                       style:
@@ -127,26 +128,53 @@ class PropertyDetailsScreen extends StatelessWidget {
                       ),
                     ),
                     Divider(height: 32),
+                    // Google Map
                     Text(
-                      'Per night',
+                      'Location',
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: 8),
+                    SizedBox(
+                      height: 200,
+                      child: GoogleMap(
+                        initialCameraPosition: CameraPosition(
+                          target: LatLng(
+                            property.latitude ?? 0.0,
+                            property.longitude ?? 0.0,
+                          ),
+                          zoom: 14.0,
+                        ),
+                        markers: {
+                          Marker(
+                            markerId: MarkerId(property.uid ?? 'property_marker'),
+                            position: LatLng(
+                              property.latitude ?? 0.0,
+                              property.longitude ?? 0.0,
+                            ),
+                          ),
+                        },
+                      ),
+                    ),
+                    Divider(height: 32),
+                    // Price
+                    Text(
+                      'Per night',
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 8),
                     Text(
                       'Per night Rs.${property.price}',
                       style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.red,
-                          fontWeight: FontWeight.bold),
+                          fontSize: 20, color: Colors.red, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 24),
+                    // Book Now Button
                     Center(
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue,
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 32, vertical: 12),
+                          padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
                           ),
