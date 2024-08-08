@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:realstate/models/user_model.dart';
+import 'package:realstate/models/user_model1.dart';
 import 'package:realstate/services/user_services.dart';
 
 

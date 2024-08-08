@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:realstate/controllers/loading_controller.dart';
-import 'package:realstate/models/user_model.dart';
+import 'package:realstate/models/user_model1.dart';
 import 'package:realstate/core/components/snackbar.dart';
 
 
@@ -53,7 +53,7 @@ class UserServices {
         if (event.data() != null) {
           return UserModel.fromJson(event.data()!);
         } else {
-          return UserModel();
+          return UserModel(status: '');
         }
       });
     } catch (e) {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:realstate/view/buyer/edit_profile/edit_profile.dart';
 import 'package:realstate/view/buyer/user_profile/user_profile_controller.dart';
 
 class UserProfileScreen extends StatelessWidget {
@@ -21,80 +20,104 @@ class UserProfileScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              // Profile Header with Image
-              Center(
-                child: CircleAvatar(
-                  radius: 50,
-                  backgroundImage:
-                      AssetImage('assets/images/image_not_found.png'),
-                ),
-              ),
-              const SizedBox(height: 20),
-
-              // User Information
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.3),
-                      spreadRadius: 2,
-                      blurRadius: 5,
-                    ),
-                  ],
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    UserInfoRow(
-                      label: 'Name',
-                      value: controller.user.value.name ?? 'N/A',
-                    ),
-                    const Divider(),
-                    UserInfoRow(
-                      label: 'Email',
-                      value: controller.user.value.email ?? 'N/A',
-                    ),
-                    const Divider(),
-                    UserInfoRow(
-                      label: 'Phone',
-                      value: controller.user.value.phoneNumber ?? 'N/A',
-                    ),
-                    const Divider(),
-                    UserInfoRow(
-                      label: 'Status',
-                      value: controller.user.value.status ?? 'N/A',
-                    ),
-                    const Divider(),
-                    UserInfoRow(
-                      label: 'User Type',
-                      value: controller.user.value.userType ?? 'N/A',
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 30),
-
-              Column(
+      body: Obx(() {
+        if (controller.user.value.uid == null) {
+          return Center(child: CircularProgressIndicator());
+        } else {
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  // Profile Header with Image
+                  Center(
+                    child: CircleAvatar(
+                      radius: 50,
+                      backgroundImage:
+                          AssetImage('assets/images/image_not_found.png'),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+
+                  // User Information
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20, horizontal: 15),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.3),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        UserInfoRow(
+                          label: 'Name',
+                          value: controller.user.value.name ?? 'N/A',
+                        ),
+                        const Divider(),
+                        UserInfoRow(
+                          label: 'Email',
+                          value: controller.user.value.email ?? 'N/A',
+                        ),
+                        const Divider(),
+                        UserInfoRow(
+                          label: 'Phone',
+                          value: controller.user.value.phoneNumber ?? 'N/A',
+                        ),
+                        const Divider(),
+                        UserInfoRow(
+                          label: 'Status',
+                          value: controller.user.value.status ?? 'N/A',
+                        ),
+                        const Divider(),
+                        UserInfoRow(
+                          label: 'User Type',
+                          value: controller.user.value.userType ?? 'N/A',
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 30),
+
+                  Column(
+                    children: [
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          Get.toNamed('/edit-profile');
+                        },
+                        icon: Icon(Icons.edit),
+                        label: const Text('Edit Profile'),
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 12, horizontal: 15),
+                          backgroundColor: const Color.fromARGB(255, 253, 252, 252),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 11,
+                  ),
                   ElevatedButton.icon(
                     onPressed: () {
-                      Get.toNamed('/edit-profile');
+                      // Implement logout functionality
                     },
-                    icon: Icon(Icons.edit),
-                    label: const Text('Edit Profile'),
+                    icon: Icon(Icons.logout),
+                    label: const Text('Logout'),
                     style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 12, horizontal: 15),
+                      padding:
+                          const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
                       backgroundColor: const Color.fromARGB(255, 253, 252, 252),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -103,28 +126,10 @@ class UserProfileScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 11,
-              ),
-              ElevatedButton.icon(
-                onPressed: () {
-                  // Implement logout functionality
-                },
-                icon: Icon(Icons.logout),
-                label: const Text('Logout'),
-                style: ElevatedButton.styleFrom(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-                  backgroundColor: const Color.fromARGB(255, 253, 252, 252),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+            ),
+          );
+        }
+      }),
     );
   }
 }

@@ -16,7 +16,7 @@ class EditProfileScreen extends StatelessWidget {
         titleTextStyle: TextStyle(
           color: Colors.black,
           fontSize: 18,
-          fontWeight: FontWeight.w600, // Lighter font weight for a subtle look
+          fontWeight: FontWeight.w600,
         ),
       ),
       body: SingleChildScrollView(
@@ -26,21 +26,20 @@ class EditProfileScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 20),
-              // Profile Image (Optional: You could allow the user to change this)
+              // Profile Image
               Center(
                 child: Stack(
                   children: [
                     CircleAvatar(
                       radius: 50,
-                      backgroundImage:
-                          AssetImage('assets/images/image_not_found.png'),
+                      backgroundImage: AssetImage('assets/images/image_not_found.png'),
                     ),
                     Positioned(
                       bottom: 0,
                       right: 0,
                       child: InkWell(
                         onTap: () {
-                          // Add functionality to change profile picture
+                          // Functionality to change profile picture
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -85,8 +84,7 @@ class EditProfileScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide.none,
                   ),
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 18, horizontal: 15),
+                  contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 15),
                 ),
                 style: TextStyle(
                   fontSize: 16,
@@ -110,8 +108,7 @@ class EditProfileScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide.none,
                   ),
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 18, horizontal: 15),
+                  contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 15),
                 ),
                 style: TextStyle(
                   fontSize: 16,
@@ -135,8 +132,7 @@ class EditProfileScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide.none,
                   ),
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 18, horizontal: 15),
+                  contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 15),
                 ),
                 style: TextStyle(
                   fontSize: 16,
@@ -163,7 +159,7 @@ class EditProfileScreen extends StatelessWidget {
                       backgroundColor: const Color.fromARGB(255, 246, 247, 250),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
-                      ), // Softer color for save button
+                      ),
                     ),
                   ),
                 ),

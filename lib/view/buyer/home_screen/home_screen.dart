@@ -91,7 +91,11 @@ class HomeScreen extends StatelessWidget {
                 itemCount: 5,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (ctx, index) {
-                  return HotelCard(
+                  return InkWell(
+                    onTap: () {
+                      Get.toNamed('/property-detail');
+                    },
+                    child: HotelCard(
                       property: PropertyModel(
                           uid: "123",
                           title: "Hotel Dark Diamon",
@@ -113,7 +117,9 @@ class HomeScreen extends StatelessWidget {
                           propertyImages: [
                             "assets/images/img_rectangle_34625889.png"
                           ],
-                          appartmentType: "Apartment"));
+                          appartmentType: "Apartment"),
+                    ),
+                  );
                 }),
           )
         ],
