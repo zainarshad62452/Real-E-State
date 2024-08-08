@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:realstate/view/buyer/buying_list/buying_list_screen.dart';
+import 'package:realstate/view/buyer/buying_property/buying_property_screen.dart';
 import 'package:realstate/view/buyer/chat/recent_chat_list_screen.dart';
 import 'package:realstate/view/buyer/chats/chats_screen.dart';
 import 'package:realstate/view/buyer/favorites/favorite_screen.dart';
 import 'package:realstate/view/buyer/home_screen/tab_container.dart';
+import 'package:realstate/view/buyer/rent_property_detail/rent_property_details_screen.dart';
+import 'package:realstate/view/buyer/schedule_screen/all_appointments_screen.dart';
 import 'package:realstate/view/buyer/schedule_screen/schedule_screen.dart';
 import 'package:realstate/view/buyer/user_profile/user_profile.dart';
 
@@ -27,8 +31,9 @@ class DashboardScreen extends StatelessWidget {
   final DashboardController controller = Get.put(DashboardController());
   static List<Widget> _widgetOptions = <Widget>[
     HomeScreenPage(),
-    FavoriteScren(),
-    ScheduleScreen(),
+    BuyPropertyScreen(),
+    RentPropertyScreen(),
+    AllAppointmentsScreen(),
     RecentChatsListScreen(),
     UserProfileScreen()
   ];

@@ -93,7 +93,7 @@ class HomeScreen extends StatelessWidget {
                 itemBuilder: (ctx, index) {
                   return InkWell(
                     onTap: () {
-                      Get.toNamed('/property-detail');
+                      Get.toNamed('/rent-property-detail');
                     },
                     child: HotelCard(
                       property: PropertyModel(

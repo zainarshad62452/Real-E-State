@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:realstate/models/property_model.dart';
 
-class PropertyDetailController extends GetxController {
+class RentPropertyDetailController extends GetxController {
   final property = PropertyModel().obs;
 
   // This is just a placeholder function to simulate fetching property details.
@@ -40,9 +40,9 @@ class PropertyDetailController extends GetxController {
   }
 }
 
-class ProperDetailBinding extends Bindings {
+class RentPropertyBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<PropertyDetailController>(() => PropertyDetailController());
+    Get.lazyPut<RentPropertyDetailController>(() => RentPropertyDetailController());
   }
 }

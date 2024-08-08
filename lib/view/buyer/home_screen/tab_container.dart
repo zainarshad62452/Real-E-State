@@ -101,9 +101,7 @@ class HomeScreenPage extends GetWidget<HomeScreenPageController> {
       ),
       body: TabBarView(
         controller: controller.tabviewController,
-        children: [
-          HomeScreen(), HomeScreen(), HomeScreen()
-        ],
+        children: [HomeScreen(), HomeScreen(), HomeScreen()],
       ),
     );
   }
@@ -253,17 +251,6 @@ class HomeScreenPage extends GetWidget<HomeScreenPageController> {
                     ),
                   ),
                 ),
-                // Tab(
-                //   child: Padding(
-                //     padding: EdgeInsets.symmetric(
-                //       horizontal: 16,
-                //       vertical: 8,
-                //     ),
-                //     child: Text(
-                //       "Sell",
-                //     ),
-                //   ),
-                // ),
                 Tab(
                   child: Padding(
                     padding: EdgeInsets.symmetric(

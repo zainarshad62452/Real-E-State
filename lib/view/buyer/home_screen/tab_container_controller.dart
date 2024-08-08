@@ -12,7 +12,7 @@ class HomeScreenPageController extends GetxController
       PropertAppHomeScreenTabContainerModel().obs;
 
   late TabController tabviewController =
-      Get.put(TabController(vsync: this, length: 4));
+      Get.put(TabController(vsync: this, length: 3));
 
   // @override
   // void onClose() {
