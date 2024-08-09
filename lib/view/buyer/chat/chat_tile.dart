@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:realstate/core/config/theme/themecolor.dart';
 import 'package:realstate/view/buyer/chat/chats_controller.dart';
-import 'package:realstate/view/buyer/chats/chats_controller.dart';
 
 class ChatTile extends StatelessWidget {
   final String imageUrl;
@@ -26,7 +26,11 @@ class ChatTile extends StatelessWidget {
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Theme.of(context).colorScheme.primaryContainer,
+        gradient: LinearGradient(
+          colors: [Themecolor.primary, Themecolor.accentColor],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -45,7 +49,10 @@ class ChatTile extends StatelessWidget {
                         width: 70,
                         placeholder: (context, url) =>
                             CircularProgressIndicator(),
-                        errorWidget: (context, url, error) => Icon(Icons.error),
+                        errorWidget: (context, url, error) => Icon(
+                          Icons.person,
+                          color: Colors.white,
+                        ),
                       )),
                 ),
                 SizedBox(width: 15),
@@ -55,13 +62,19 @@ class ChatTile extends StatelessWidget {
                     children: [
                       Text(
                         name,
-                        style: Theme.of(context).textTheme.bodyLarge,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyLarge
+                            ?.copyWith(color: Colors.white),
                       ),
                       SizedBox(height: 5),
                       Text(
                         lastChat,
                         maxLines: 1,
-                        style: Theme.of(context).textTheme.labelMedium,
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelMedium
+                            ?.copyWith(color: Colors.white),
                       ),
                     ],
                   ),
@@ -101,7 +114,10 @@ class ChatTile extends StatelessWidget {
               // ),
               Text(
                 lastTime,
-                style: Theme.of(context).textTheme.labelMedium,
+                style: Theme.of(context)
+                    .textTheme
+                    .labelMedium
+                    ?.copyWith(color: Colors.white),
               ),
             ],
           ),

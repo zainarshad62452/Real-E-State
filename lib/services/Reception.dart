@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:realstate/controllers/loading_controller.dart';
+import 'package:realstate/controllers/user_controller.dart';
 import 'package:realstate/core/routes/app_routes.dart';
 import 'package:realstate/view/buyer/home_screen/tab_container_controller.dart';
 import 'package:realstate/view/seller/seller_dashboard/dashboard_controller.dart';
@@ -28,10 +29,12 @@ class Reception {
     final type = await fetchUserType();
     print("::: usertype is $type");
     if (FirebaseAuth.instance.currentUser != null) {
-      if (!FirebaseAuth.instance.currentUser!.emailVerified) {
-        FirebaseAuth.instance.currentUser!.sendEmailVerification();
-        Get.toNamed(AppRoutes.emailVerificationScreen);
-      } else if (type == "Seller") {
+      // if (!FirebaseAuth.instance.currentUser!.emailVerified) {
+      //   FirebaseAuth.instance.currentUser!.sendEmailVerification();
+      //   Get.toNamed(AppRoutes.emailVerificationScreen);
+      // } else
+      Get.put(UserController(),permanent: true);
+      if (type == "Seller") {
         loading(false);
         print("::: Going to home");
         Get.put(SellerDashboardController());

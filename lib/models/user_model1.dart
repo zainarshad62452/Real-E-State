@@ -5,6 +5,7 @@ class UserModel {
   String? phoneNumber;
   String? status;
   String? userType;
+  String? profilePic;
 
   UserModel({
     this.uid,
@@ -13,6 +14,7 @@ class UserModel {
     this.phoneNumber,
     this.status,
     this.userType,
+    this.profilePic = '',
   });
 
   // Factory constructor to create a UserModel instance from a map (json)
@@ -24,6 +26,7 @@ class UserModel {
       phoneNumber: json['phoneNumber'] as String?,
       status: json['status'] as String?,
       userType: json['userType'] as String?,
+      profilePic: json['profilePic']  ?? "",
     );
   }
 
@@ -36,6 +39,7 @@ class UserModel {
       'phoneNumber': phoneNumber,
       'status': status,
       'userType': userType,
+      'profilePic': profilePic,
     };
   }
 }

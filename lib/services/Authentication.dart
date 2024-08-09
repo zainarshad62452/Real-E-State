@@ -10,7 +10,6 @@ import 'user_services.dart';
 class Authentication {
   FirebaseAuth auth = FirebaseAuth.instance;
 
-
   createAccount(
       {required String name,
       required String email,
@@ -106,6 +105,7 @@ class Authentication {
       String verificationId, String smsCode) async {
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
         verificationId: verificationId, smsCode: smsCode);
+    print('::: ${smsCode} $verificationId}');
     UserCredential userCredential = await auth.signInWithCredential(credential);
     return userCredential.user;
   }
@@ -137,7 +137,7 @@ class Authentication {
   //     alertSnackbar(e.toString().split(']').last); //TODO firebase exception
   //   }
   // }
-  
+
   signinWithEmail(String email, String pass) async {
     try {
       loading(true);
@@ -195,5 +195,4 @@ class Authentication {
       snackbar("Error Signing Out", e.toString()); //TODO firebase exception
     }
   }
-
 }

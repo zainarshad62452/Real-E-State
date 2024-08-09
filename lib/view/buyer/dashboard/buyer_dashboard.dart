@@ -2,19 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:realstate/core/utils/responsive.dart';
-
-import 'package:realstate/view/buyer/buying_list/buying_list_screen.dart';
-import 'package:realstate/view/buyer/buying_property/buying_property_screen.dart';
 import 'package:realstate/view/buyer/chat/recent_chat_list_screen.dart';
 import 'package:realstate/view/buyer/favorites/favorite_screen.dart';
-import 'package:realstate/view/buyer/home_screen/tab_container.dart';
+import 'package:realstate/view/buyer/home_screen/buyer_home_screen.dart';
 import 'package:realstate/view/buyer/home_screen/tab_container_controller.dart';
-import 'package:realstate/view/buyer/rent_property_detail/rent_property_details_screen.dart';
 import 'package:realstate/view/buyer/schedule_screen/all_appointments_screen.dart';
-import 'package:realstate/view/buyer/schedule_screen/schedule_screen.dart';
 import 'package:realstate/view/buyer/user_profile/user_profile.dart';
 
-class DashboardController extends GetxController {
+class BuyerDashboardController extends GetxController {
   var selectedIndex = 0.obs;
   var isDrawerCollapsed = false.obs;
 
@@ -30,18 +25,17 @@ class DashboardController extends GetxController {
 class DashboardBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<DashboardController>(() => DashboardController());
+    Get.lazyPut<BuyerDashboardController>(() => BuyerDashboardController());
   }
 }
 
 class DashboardScreen extends StatelessWidget {
-  final DashboardController controller = Get.put(DashboardController());
+  final BuyerDashboardController controller = Get.put(BuyerDashboardController());
   var hom = Get.put(HomeScreenPageController());
 
   static List<Widget> _widgetOptions = <Widget>[
-    HomeScreenPage(),
-    BuyPropertyScreen(),
-    RentPropertyScreen(),
+    BuyerHomeScreen(),
+    FavoriteScren(),
     AllAppointmentsScreen(),
     RecentChatsListScreen(),
     UserProfileScreen()

@@ -27,6 +27,7 @@ class UserProfileController extends GetxController {
             phoneNumber: snapshot.data()?['phoneNumber'] ?? 'N/A',
             status: snapshot.data()?['status'] ?? 'Active',
             userType: snapshot.data()?['userType'] ?? 'Buyer',
+            profilePic: snapshot.data()?['profilePic'] ?? '',
           );
         }
       }

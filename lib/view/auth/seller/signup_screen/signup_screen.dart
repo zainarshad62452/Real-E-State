@@ -160,7 +160,7 @@ class SellerSignupScreen extends GetWidget<SellerSignupController> {
               color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600)),
       validator: (number) {
         if (number.number.isEmpty) {
-          return "The phone number cannot be left emptyssss";
+          return "The phone number cannot be left empty";
         }
         return null;
       },

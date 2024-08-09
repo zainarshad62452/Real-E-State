@@ -9,4 +9,7 @@ class Themecolor {
   static const Color primaryDark = Color.fromARGB(255, 5, 5, 6);
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF000000);
+
+  static const Color accentColor = Color(0xFF50E3C2);
+  static const Color textColor = Color(0xFF4A4A4A);
 }
