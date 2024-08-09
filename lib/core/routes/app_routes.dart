@@ -23,7 +23,7 @@ import 'package:realstate/view/buyer/favorites/favorite_screen.dart';
 import 'package:realstate/view/buyer/favorites/favorites_controller.dart';
 import 'package:realstate/view/buyer/fillter_screen/filter_buyer_for_buyer.dart';
 import 'package:realstate/view/buyer/fillter_screen/propert_app_home_filter_controller.dart';
-import 'package:realstate/view/buyer/home_screen/home_screen.dart';
+import 'package:realstate/view/buyer/home_screen/all_properties_for_buyer.dart';
 import 'package:realstate/view/buyer/home_screen/home_screen_controller.dart';
 import 'package:realstate/view/buyer/home_screen/buyer_home_screen.dart';
 import 'package:realstate/view/buyer/home_screen/tab_container_controller.dart';
