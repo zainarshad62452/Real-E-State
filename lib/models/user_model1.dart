@@ -7,6 +7,7 @@ class UserModel {
   String? userType;
   String? frontImageUrl;
   String? backImageUrl;
+  String? profilePic;
 
   UserModel({
     this.uid,
@@ -17,6 +18,7 @@ class UserModel {
     this.status,
     this.userType,
     this.backImageUrl,
+    this.profilePic = '',
   });
 
   // Factory constructor to create a UserModel instance from a map (json)
@@ -30,6 +32,7 @@ class UserModel {
       userType: json['userType'] as String?,
       frontImageUrl: json['cnic_front_url'] as String?,
       backImageUrl: json['cnic_back_url'] as String?,
+      profilePic: json['profilePic']  ?? "",
     );
   }
 
@@ -43,6 +46,8 @@ class UserModel {
       'status': status,
       'cnic_front_url': frontImageUrl,
       'cnic_back_url': backImageUrl,
+      'userType': userType,
+      'profilePic': profilePic,
     };
   }
 }

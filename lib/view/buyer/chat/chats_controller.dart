@@ -5,7 +5,6 @@ import 'package:realstate/models/chat_model.dart';
 import 'package:realstate/models/chat_room_model.dart';
 import 'package:realstate/models/user_model1.dart';
 import 'package:realstate/view/buyer/chat/contact_controller.dart';
-import 'package:realstate/view/buyer/chat/profile_controller.dart';
 import 'package:realstate/view/buyer/user_profile/user_profile_controller.dart';
 import 'package:uuid/uuid.dart';
 import 'package:intl/intl.dart';

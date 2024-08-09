@@ -4,23 +4,22 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:realstate/controllers/user_controller.dart';
+import 'package:realstate/core/config/constants.dart';
 import 'package:realstate/models/user_model1.dart';
 import 'package:realstate/view/buyer/chat/chats_controller.dart';
-import 'package:realstate/view/buyer/chat/profile_controller.dart';
-import 'package:realstate/view/buyer/chats/chats_controller.dart';
-import 'package:realstate/view/buyer/user_profile/user_profile_controller.dart';
+import 'package:realstate/view/buyer/chat/type_message.dart';
 import 'package:realstate/view/widgets/chat_bubble.dart';
-
-class ChatScreen extends StatelessWidget {
+class ChatPage extends StatelessWidget {
   final UserModel userModel;
-  const ChatScreen({super.key, required this.userModel});
-  
+  const ChatPage({super.key, required this.userModel});
 
   @override
   Widget build(BuildContext context) {
     ChatController chatController = Get.put(ChatController());
     TextEditingController messageController = TextEditingController();
-    UserProfileController profileController = Get.put(UserProfileController());
+    UserController profileController = Get.put(UserController());
+    // CallController callController = Get.put(CallController());
     return Scaffold(
       appBar: AppBar(
         leading: InkWell(
@@ -31,17 +30,18 @@ class ChatScreen extends StatelessWidget {
             //   userModel: userModel,
             // ));
           },
-          child: Padding(
+          child:
+           Padding(
             padding: const EdgeInsets.all(5),
             child: Container(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(100),
                 child: CachedNetworkImage(
-                  // imageUrl:
-                  //     userModel.profilePic ?? AssetsImage.defaultProfileUrl,
+                  imageUrl:
+                      userModel.profilePic ?? AppAssetPaths.defaultProfileUrl,
                   fit: BoxFit.cover,
                   placeholder: (context, url) => CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => Icon(Icons.error), imageUrl: '',
+                  errorWidget: (context, url, error) => Icon(Icons.person),
                 ),
               ),
             ),
@@ -69,12 +69,10 @@ class ChatScreen extends StatelessWidget {
                   //       return const Text("........");
                   //     } else {
                   //       return Text(
-                  //         snapshot.data!.isActive == true
-                  //             ? 'Online'
-                  //             : 'Offline',
+                  //         snapshot.data!.status ?? "",
                   //         style: TextStyle(
                   //           fontSize: 12,
-                  //           color: snapshot.data!.isActive == true
+                  //           color: snapshot.data!.status == "Online"
                   //               ? Colors.green
                   //               : Colors.grey,
                   //         ),
@@ -82,60 +80,13 @@ class ChatScreen extends StatelessWidget {
                   //     }
                   //   },
                   // )
+                
                 ],
               ),
             ],
           ),
         ),
-     actions: [
-  // IconButton(
-  //   onPressed: () {
-      
-  //     callController.callAction(
-  //         userModel, profileController.currentUser.value, "audio");
-          
-  //   },
-  //   icon: Icon(
-  //     Icons.phone,
-  //   ),
-  // ),
-  // IconButton(
-  //   onPressed: () {
-  //     callController.callAction(
-  //         userModel, profileController.currentUser.value, "video");
-  //   },
-  //   icon: Icon(
-  //     Icons.video_call,
-  //   ),
-  // )
-]
-
-     
-        // actions: [
-        //   IconButton(
-        //     onPressed: () {
-        //       Get.to(() => AudioCallPage(target: userModel));
-        //       callController.callAction(
-        //           userModel, profileController.currentUser.value, "audio");
-        //     },
-        //     icon: Icon(
-        //       Icons.phone,
-        //     ),
-        //   ),
-        //   IconButton(
-        //     onPressed: () {
-        //       Get.to(() => VideoCallPage(target: userModel));
-        //       callController.callAction(
-        //           userModel, profileController.currentUser.value, "video");
-        //     },
-        //     icon: Icon(
-        //       Icons.video_call,
-        //     ),
-        //   )
-        // ],
-     
-     
-      ),
+       ),
       body: Padding(
         padding: EdgeInsets.only(bottom: 10, top: 10, left: 10, right: 10),
         child: Column(
@@ -176,7 +127,7 @@ class ChatScreen extends StatelessWidget {
                               message: snapshot.data![index].message!,
                               imageUrl: snapshot.data![index].imageUrl ?? "",
                               isComming: snapshot.data![index].receiverId ==
-                                  profileController.user.value.uid,
+                                  profileController.user?.value.uid,
                               status: snapshot.data![index].readStatus!,
                               time: formattedTime,
                             );
@@ -227,6 +178,9 @@ class ChatScreen extends StatelessWidget {
                   )
                 ],
               ),
+            ),
+            TypeMessage(
+              userModel: userModel,
             ),
           ],
         ),

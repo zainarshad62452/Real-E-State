@@ -36,6 +36,8 @@ class PropertyServices {
     }
   }
 
+
+// fetch property by id
   Stream<PropertyModel>? streamProperty(String propertyId) {
     try {
       return firestore.collection("properties").doc(propertyId).snapshots().map((event) {
@@ -49,6 +51,7 @@ class PropertyServices {
       return null;
     }
   }
+// fetch all properties
 
   Stream<List<PropertyModel>>? streamAllProperties() {
     try {

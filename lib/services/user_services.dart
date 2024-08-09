@@ -30,8 +30,9 @@ class UserServices {
       alertSnackbar("Can't register user");
     }
   }
-  // startChatSendMessage({ required String reciver, required String type,required String groupChatId}) async {
-
+ 
+ 
+ // startChatSendMessage({ required String reciver, required String type,required String groupChatId}) async {
   //   try {
   //     var x = firestore.collection("donor").doc(FirebaseAuth.instance.currentUser?.uid)
   //         .collection(reciver)

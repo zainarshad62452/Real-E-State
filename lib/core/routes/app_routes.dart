@@ -14,14 +14,16 @@ import 'package:realstate/view/buyer/buying_property/buying_property_screen.dart
 import 'package:realstate/view/buyer/chat/chat_screen.dart';
 import 'package:realstate/view/buyer/chat/chats_controller.dart';
 import 'package:realstate/view/buyer/chat/recent_chat_list_screen.dart';
-import 'package:realstate/view/buyer/dashboard/dashboard.dart';
+import 'package:realstate/view/buyer/dashboard/buyer_dashboard.dart';
 import 'package:realstate/view/buyer/edit_profile/edit_profile.dart';
 import 'package:realstate/view/buyer/edit_profile/edit_profile_controller.dart';
 import 'package:realstate/view/buyer/favorites/favorite_screen.dart';
 import 'package:realstate/view/buyer/favorites/favorites_controller.dart';
+import 'package:realstate/view/buyer/fillter_screen/filter_buyer_for_buyer.dart';
+import 'package:realstate/view/buyer/fillter_screen/propert_app_home_filter_controller.dart';
 import 'package:realstate/view/buyer/home_screen/home_screen.dart';
 import 'package:realstate/view/buyer/home_screen/home_screen_controller.dart';
-import 'package:realstate/view/buyer/home_screen/tab_container.dart';
+import 'package:realstate/view/buyer/home_screen/buyer_home_screen.dart';
 import 'package:realstate/view/buyer/home_screen/tab_container_controller.dart';
 import 'package:realstate/view/buyer/rent_property_detail/rent_proper_detail_controller.dart';
 import 'package:realstate/view/buyer/rent_property_detail/rent_property_details_screen.dart';
@@ -46,8 +48,8 @@ class AppRoutes {
 
   static const String propertAppHomeScreenTabContainerScreen =
       '/propert_app_home_screen_tab_container_screen';
-  static const String propertAppHomeFilterScreen =
-      '/propert_app_home_filter_screen';
+  static const String filterScreenForBuyer =
+      '/filter_screen_for_buyer';
 
   static const String initialRoute = '/initialRoute';
   static const String buyerDashboard = '/buyer_dashboard';
@@ -99,7 +101,7 @@ class AppRoutes {
 
     GetPage(
       name: propertAppHomeScreenTabContainerScreen,
-      page: () => HomeScreenPage(),
+      page: () => BuyerHomeScreen(),
       bindings: [HomeScreenPageBindings()],
     ),
     GetPage(
@@ -124,9 +126,7 @@ class AppRoutes {
     ),
     GetPage(
       name: chats,
-      page: () => ChatScreen(
-        userModel: UserModel(),
-      ),
+      page: () => ChatPage(userModel: UserModel(),),
       binding: recentChatsBinding(),
     ),
     GetPage(
@@ -152,12 +152,12 @@ class AppRoutes {
       name: allAppointments,
       page: () => AllAppointmentsScreen(),
     ),
-    //  GetPage(
-    //   name: RentPropertyScreen,
-    //   page: () => RentPropertyScreen(),
-    //   binding: BuyingListBinding(),
-    // ),
-    GetPage(
+     GetPage(
+      name: filterScreenForBuyer,
+      page: () => FilterScreenForBuyer(),
+      binding: FilterForBuyerBinding(),
+    ),
+     GetPage(
       name: BuyPropertyDetail,
       page: () => BuyPropertyScreen(),
       binding: BuyingPropertyBinding(),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:realstate/services/Authentication.dart';
+import 'package:realstate/core/config/theme/themecolor.dart';
 import 'package:realstate/view/buyer/user_profile/user_profile_controller.dart';
+import 'package:realstate/view/widgets/network_image.dart';
 
 class UserProfileScreen extends StatelessWidget {
   @override
@@ -12,13 +14,13 @@ class UserProfileScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('User Profile'),
         actions: [
-          IconButton(
-            icon: Icon(Icons.edit),
-            onPressed: () {
-              Get.toNamed('/edit-profile');
-              // Navigate to edit profile screen or implement edit functionality
-            },
-          ),
+          // IconButton(
+          //   icon: Icon(Icons.edit),
+          //   onPressed: () {
+          //     Get.toNamed('/edit-profile');
+          //     // Navigate to edit profile screen or implement edit functionality
+          //   },
+          // ),
         ],
       ),
       body: Obx(() {
@@ -32,13 +34,14 @@ class UserProfileScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   // Profile Header with Image
-                  Center(
-                    child: CircleAvatar(
-                      radius: 50,
-                      backgroundImage:
-                          AssetImage('assets/images/image_not_found.png'),
-                    ),
-                  ),
+                  // Center(
+                  //   child: CircleAvatar(
+                  //     radius: 50,
+                  //     backgroundImage:
+                  //         AssetImage('assets/images/image_not_found.png'),
+                  //   ),
+                  // ),
+                  NetworkImageWidget(imageUrl:controller.user.value.profilePic),
                   const SizedBox(height: 20),
 
                   // User Information

@@ -33,12 +33,12 @@ class _SplashScreenState extends State<SplashScreen> {
               end: Alignment.bottomRight,
               colors: [Colors.blue, Color.fromARGB(255, 255, 200, 0)],
             ),
-            image: DecorationImage(
-              image: AssetImage(
-                  // ImageConstant.imgLogo21,
-                  ""),
-              fit: BoxFit.cover,
-            ),
+            // image: DecorationImage(
+            //   image: AssetImage(
+            //       // ImageConstant.imgLogo21,
+            //       ""),
+            //   fit: BoxFit.cover,
+            // ),
           ),
         ),
       ),
