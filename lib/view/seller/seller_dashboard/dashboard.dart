@@ -1,7 +1,9 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:realstate/controllers/user_controller.dart';
 import 'package:realstate/core/utils/responsive.dart';
+import 'package:realstate/view/buyer/chat/chat_screen.dart';
 import 'package:realstate/view/buyer/user_profile/user_profile.dart';
 import 'package:realstate/view/seller/add_property_screen/add_property_screen.dart';
 import 'package:realstate/view/seller/home_screen/home_screen.dart';
@@ -12,7 +14,7 @@ class SellerDashboard extends StatelessWidget {
       Get.put(SellerDashboardController());
 
   final List<Widget> pages = [
-    Center(child: Text('Chat Screen')), // Placeholder for Chat Screen
+    ChatPage(userModel: userCntr.user!.value), // Placeholder for Chat Screen
     SellerHomeScreen(),
     UserProfileScreen()
   ];
