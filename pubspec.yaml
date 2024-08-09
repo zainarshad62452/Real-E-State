@@ -60,6 +60,9 @@ dependencies:
   http: ^1.2.2
   google_maps_flutter_web: ^0.5.10
   
+  file_picker: ^5.2.3
+  geolocator: 
+  geocoding: 
 
 
 ev_dependencies:

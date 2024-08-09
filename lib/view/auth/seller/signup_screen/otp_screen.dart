@@ -4,7 +4,7 @@ import 'signup_controller.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
 class OTPVerificationScreen extends GetWidget<SellerSignupController> {
-  final otpController = TextEditingController();
+  final otpController = "".obs;
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +30,14 @@ class OTPVerificationScreen extends GetWidget<SellerSignupController> {
               onCodeChanged: (String code) {},
               onSubmit: (String verificationCode) {
                 print("::: Current OTP is $verificationCode");
+                otpController.value = verificationCode;
                 controller.verifyOTP(verificationCode);
               },
             ),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                controller.verifyOTP(otpController.text.trim());
+                controller.verifyOTP(otpController.value.trim());
               },
               child: Text(
                 "Verify OTP",

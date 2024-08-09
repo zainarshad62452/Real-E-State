@@ -5,8 +5,6 @@ import 'package:realstate/view/auth/buyer/login_screen/login_controller.dart';
 import 'package:realstate/view/auth/buyer/login_screen/login_screen.dart';
 import 'package:realstate/view/auth/buyer/signup_screen/signup_controller.dart';
 import 'package:realstate/view/auth/buyer/signup_screen/signup_screen.dart';
-import 'package:realstate/view/auth/seller/login_screen/login_controller.dart';
-import 'package:realstate/view/auth/seller/login_screen/login_screen.dart';
 import 'package:realstate/view/auth/seller/signup_screen/otp_screen.dart';
 import 'package:realstate/view/auth/seller/signup_screen/signup_controller.dart';
 import 'package:realstate/view/auth/seller/signup_screen/signup_screen.dart';
@@ -42,7 +40,6 @@ import 'package:realstate/view/splash_screen.dart';
 class AppRoutes {
   static const String loginScreen = '/login_screen';
   static const String signupScreen = '/signup_screen';
-  static const String sellerLoginScreen = '/seller_login_screen';
   static const String sellerSignupScreen = '/seller_signup_screen';
   static const String emailVerificationScreen = '/email_verfication';
   static const String otpVerificationScreen = '/otp-verification';
@@ -74,21 +71,13 @@ class AppRoutes {
       page: () => LoginScreen(),
       bindings: [LoginBinding()],
     ),
-    GetPage(
-      name: sellerLoginScreen,
-      page: () => SellerLoginScreen(),
-      bindings: [SellerLoginBinding()],
-    ),
+
     GetPage(
       name: emailVerificationScreen,
       page: () => EmailVerification(),
       bindings: [],
     ),
-     GetPage(
-      name: otpVerificationScreen,
-      page: () => OTPVerificationScreen(),
-      bindings: [SellerSignupBinding(),SellerLoginBinding()],
-    ),
+
     GetPage(
       name: initialRoute,
       page: () => SplashScreen(),
@@ -104,12 +93,12 @@ class AppRoutes {
       page: () => SellerSignupScreen(),
       bindings: [SellerSignupBinding()],
     ),
-     GetPage(
+    GetPage(
       name: sellerDashboard,
       page: () => SellerDashboard(),
       bindings: [SellerDashboardBinding()],
     ),
-    
+
     GetPage(
       name: propertAppHomeScreenTabContainerScreen,
       page: () => BuyerHomeScreen(),
@@ -121,26 +110,26 @@ class AppRoutes {
       bindings: [PropertAppHomeScreenBinding()],
     ),
     GetPage(
-          name: buyerDashboard,
-          page: () => DashboardScreen(),
-          binding: DashboardBinding(),
-        ),
-        GetPage(
+      name: buyerDashboard,
+      page: () => DashboardScreen(),
+      binding: DashboardBinding(),
+    ),
+    GetPage(
       name: userProfile,
       page: () => UserProfileScreen(),
       binding: UserProfileBinding(),
     ),
-     GetPage(
+    GetPage(
       name: editProfile,
       page: () => EditProfileScreen(),
       binding: EditProfileBinding(),
     ),
-     GetPage(
+    GetPage(
       name: chats,
       page: () => ChatPage(userModel: UserModel(),),
       binding: recentChatsBinding(),
     ),
-     GetPage(
+    GetPage(
       name: chatsDetail,
       page: () => RecentChatsListScreen(),
     ),
@@ -149,17 +138,17 @@ class AppRoutes {
       page: () => RentPropertyScreen(),
       binding: RentPropertyBinding(),
     ),
-     GetPage(
+    GetPage(
       name: scheduleScreen,
       page: () => ScheduleScreen(),
       binding: ScheduleScreenBinding(),
     ),
-     GetPage(
+    GetPage(
       name: favoritesScreen,
       page: () => FavoriteScren(),
       binding: FavoritesBinding(),
     ),
-     GetPage(
+    GetPage(
       name: allAppointments,
       page: () => AllAppointmentsScreen(),
     ),

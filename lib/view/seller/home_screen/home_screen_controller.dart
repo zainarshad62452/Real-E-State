@@ -29,12 +29,10 @@ class SellerHomeController extends GetxController {
   }
 
   void editProperty(PropertyModel property) {
-    // Navigate to edit property screen with the property data
-    // Get.toNamed('/edit-property', arguments: property);
+
   }
 
   void viewPropertyDetails(PropertyModel property) {
-    // Navigate to property details screen with the property data
-    // Get.toNamed('/property-details', arguments: property);
+    
   }
 }

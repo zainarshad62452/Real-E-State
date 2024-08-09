@@ -5,6 +5,8 @@ class UserModel {
   String? phoneNumber;
   String? status;
   String? userType;
+  String? frontImageUrl;
+  String? backImageUrl;
   String? profilePic;
 
   UserModel({
@@ -12,8 +14,10 @@ class UserModel {
     this.name,
     this.email,
     this.phoneNumber,
+    this.frontImageUrl,
     this.status,
     this.userType,
+    this.backImageUrl,
     this.profilePic = '',
   });
 
@@ -26,6 +30,8 @@ class UserModel {
       phoneNumber: json['phoneNumber'] as String?,
       status: json['status'] as String?,
       userType: json['userType'] as String?,
+      frontImageUrl: json['cnic_front_url'] as String?,
+      backImageUrl: json['cnic_back_url'] as String?,
       profilePic: json['profilePic']  ?? "",
     );
   }
@@ -38,6 +44,8 @@ class UserModel {
       'email': email,
       'phoneNumber': phoneNumber,
       'status': status,
+      'cnic_front_url': frontImageUrl,
+      'cnic_back_url': backImageUrl,
       'userType': userType,
       'profilePic': profilePic,
     };

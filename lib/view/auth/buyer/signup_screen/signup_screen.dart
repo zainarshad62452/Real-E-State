@@ -74,16 +74,7 @@ class SignupScreen extends GetWidget<SignupController> {
       ),
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              TextButton(
-                  onPressed: () {
-                    Get.offAllNamed(AppRoutes.sellerSignupScreen);
-                  },
-                  child: Text("Signup as Seller")),
-            ],
-          ),
+         
           _buildSignUpForm(width),
           const SizedBox(height: 48),
           _buildSignUpButton(),
@@ -99,6 +90,17 @@ class SignupScreen extends GetWidget<SignupController> {
           ),
           const SizedBox(height: 12),
           _buildLoginButton(),
+          const SizedBox(height: 18),
+          const Text(
+            "OR",
+            style: TextStyle(
+              color: Color(0XFF000000),
+              fontSize: 14,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          _buildSellerButton(),
         ],
       ),
     );
@@ -238,6 +240,14 @@ class SignupScreen extends GetWidget<SignupController> {
       text: "Login",
       onPressed: () {
         controller.onLoginButtonPressed();
+      },
+    );
+  }
+      Widget _buildSellerButton() {
+    return CustomOutlineButton(
+      text: "Continue As Seller",
+      onPressed: () {
+        Get.offAllNamed(AppRoutes.sellerSignupScreen);
       },
     );
   }

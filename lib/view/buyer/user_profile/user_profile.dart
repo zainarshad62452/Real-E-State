@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:realstate/services/Authentication.dart';
 import 'package:realstate/core/config/theme/themecolor.dart';
 import 'package:realstate/view/buyer/user_profile/user_profile_controller.dart';
 import 'package:realstate/view/widgets/network_image.dart';
@@ -75,7 +76,6 @@ class UserProfileScreen extends StatelessWidget {
                           label: 'Phone',
                           value: controller.user.value.phoneNumber ?? 'N/A',
                         ),
-                        
                         const Divider(),
                         UserInfoRow(
                           label: 'User Type',
@@ -97,7 +97,8 @@ class UserProfileScreen extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(
                               vertical: 12, horizontal: 15),
-                          backgroundColor: const Color.fromARGB(255, 253, 252, 252),
+                          backgroundColor:
+                              const Color.fromARGB(255, 253, 252, 252),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -110,15 +111,14 @@ class UserProfileScreen extends StatelessWidget {
                   ),
                   ElevatedButton.icon(
                     onPressed: () {
-                      // Implement logout functionality
+                      Authentication().signOut();
                     },
                     icon: Icon(Icons.logout),
                     label: const Text('Logout'),
                     style: ElevatedButton.styleFrom(
-                      padding:
-                          const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-                      backgroundColor: Themecolor.primary,
-                      foregroundColor: Themecolor.white,
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 12, horizontal: 20),
+                      backgroundColor: const Color.fromARGB(255, 253, 252, 252),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
