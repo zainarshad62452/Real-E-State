@@ -63,16 +63,6 @@ class LoginScreen extends GetWidget<LoginController> {
       ),
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              TextButton(
-                  onPressed: () {
-                    Get.offAllNamed(AppRoutes.sellerLoginScreen);
-                  },
-                  child: Text("Sign in as Seller")),
-            ],
-          ),
           _buildSignUpForm(width),
           const SizedBox(height: 48),
           _buildLoginButton(),
@@ -88,6 +78,17 @@ class LoginScreen extends GetWidget<LoginController> {
           ),
           const SizedBox(height: 18),
           _buildSignUpButton(),
+const SizedBox(height: 18),
+          const Text(
+            "OR",
+            style: TextStyle(
+              color: Color(0XFF000000),
+              fontSize: 14,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          _buildSellerButton(),
         ],
       ),
     );
@@ -184,6 +185,14 @@ class LoginScreen extends GetWidget<LoginController> {
       text: "Create An Account",
       onPressed: () {
         controller.onCreateAccountButtonPressed();
+      },
+    );
+  }
+    Widget _buildSellerButton() {
+    return CustomOutlineButton(
+      text: "Continue As Seller",
+      onPressed: () {
+        Get.offAllNamed(AppRoutes.sellerSignupScreen);
       },
     );
   }

@@ -5,7 +5,6 @@ import 'package:realstate/controllers/loading_controller.dart';
 import 'package:realstate/core/components/custom_app_bar.dart';
 import 'package:realstate/core/components/custom_button.dart';
 import 'package:realstate/core/components/custom_outlined_button.dart';
-import 'package:realstate/core/components/custom_textfied.dart';
 import 'package:realstate/core/components/loading%20.dart';
 import 'package:realstate/core/routes/app_routes.dart';
 import 'package:realstate/core/utils/responsive.dart';
@@ -69,16 +68,6 @@ class SellerSignupScreen extends GetWidget<SellerSignupController> {
       ),
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              TextButton(
-                  onPressed: () {
-                    Get.offAllNamed(AppRoutes.signupScreen);
-                  },
-                  child: Text("Signup as Buyer")),
-            ],
-          ),
           _buildSignUpForm(width),
           const SizedBox(height: 48),
           _buildSignUpButton(),
@@ -110,12 +99,7 @@ class SellerSignupScreen extends GetWidget<SellerSignupController> {
           CountryCodeModel(name: "Pakistan", dial_code: "+92", code: "PK"),
       betweenPadding: 23,
       onInputChanged: (phone) {
-        print(phone.code);
-        print(phone.dial_code);
-        print(phone.number);
-        print(phone.rawFullNumber);
-        print(phone.rawNumber);
-        print(phone.rawDialCode);
+        
       },
       // loadFromJson: loadFromJson,
       dialogConfig: DialogConfig(
@@ -160,7 +144,7 @@ class SellerSignupScreen extends GetWidget<SellerSignupController> {
               color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600)),
       validator: (number) {
         if (number.number.isEmpty) {
-          return "The phone number cannot be left emptyssss";
+          return "The phone number cannot be left empty";
         }
         return null;
       },

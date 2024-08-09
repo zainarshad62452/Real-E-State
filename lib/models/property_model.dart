@@ -18,6 +18,8 @@ class PropertyModel {
   bool? isSold;
   List<String>? propertyImages;
   String? appartmentType;
+  String? propertyType;
+  String? city;
   double? rating;
   List<Review>? reviews;
 
@@ -39,9 +41,11 @@ class PropertyModel {
     this.sellerId,
     this.solledTo,
     this.isSold,
+    this.city,
     this.propertyImages,
     this.appartmentType,
     this.rating,
+    this.propertyType,
     this.reviews,
   });
 
@@ -49,6 +53,8 @@ class PropertyModel {
     return PropertyModel(
       uid: json['uid'] as String?,
       title: json['title'] as String?,
+      propertyType: json['propertyType'] as String?,
+      city: json['city'] as String?,
       description: json['description'] as String?,
       numberOfBedRooms: json['numberOfBedRooms'] as int?,
       numberOfBathrooms: json['numberOfBathrooms'] as int?,
@@ -85,6 +91,8 @@ class PropertyModel {
       'isKitchen': isKitchen,
       'dimensions': dimensions,
       'isParking': isParking,
+      'propertyType': propertyType,
+      'city': city,
       'furnishedType': furnishedType,
       'numberOfFloor': numberOfFloor,
       'price': price,

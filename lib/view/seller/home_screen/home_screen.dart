@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:realstate/models/property_model.dart';
+import 'package:realstate/controllers/property_controller.dart';
 import 'package:realstate/view/seller/home_screen/home_screen_controller.dart';
 
 class SellerHomeScreen extends StatelessWidget {
@@ -25,11 +25,11 @@ class SellerHomeScreen extends StatelessWidget {
           }
 
           return ListView.builder(
-            itemCount: controller.allProperties.length,
+            itemCount: propertyCntr.allProperties?.length,
             itemBuilder: (context, index) {
-              final property = controller.allProperties[index];
+              final property = propertyCntr.allProperties?[index];
               return Dismissible(
-                key: Key(property.uid!),
+                key: Key(property!.uid!),
                 direction: DismissDirection.endToStart,
                 background: Container(
                   color: Colors.red,

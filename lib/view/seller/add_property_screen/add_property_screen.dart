@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:realstate/controllers/loading_controller.dart';
+import 'package:realstate/core/components/loading%20.dart';
+import 'package:realstate/view/seller/add_property_screen/location_selection_screen.dart';
 import 'add_property_controller.dart';
 
 class AddPropertyScreen extends StatelessWidget {
@@ -9,53 +12,59 @@ class AddPropertyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final AddPropertyController controller = Get.put(AddPropertyController());
     bool isLargeScreen = Get.width > 900;
-    return Scaffold(
-      appBar: isLargeScreen
-          ? null
-          : AppBar(
-              centerTitle: true,
-              title: Text("Seller Dashboard"),
+    return Obx(()=>Stack(
+        children: [
+          Scaffold(
+            appBar: isLargeScreen
+                ? null
+                : AppBar(
+                    centerTitle: true,
+                    title: Text("Seller Dashboard"),
+                  ),
+            body: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  bool isLargeScreen = constraints.maxWidth > 900;
+          
+                  return isLargeScreen
+                      ? SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Expanded(
+                                    flex: 2,
+                                    child: _buildFormSection(controller),
+                                  ),
+                                  SizedBox(
+                                    width: Get.width / 20,
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: _buildImageSection(controller),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        )
+                      : SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              _buildFormSection(controller),
+                              SizedBox(height: 20),
+                              _buildImageSection(controller),
+                            ],
+                          ),
+                        );
+                },
+              ),
             ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            bool isLargeScreen = constraints.maxWidth > 900;
-
-            return isLargeScreen
-                ? SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              flex: 2,
-                              child: _buildFormSection(controller),
-                            ),
-                            SizedBox(
-                              width: Get.width / 20,
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: _buildImageSection(controller),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  )
-                : SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _buildFormSection(controller),
-                        SizedBox(height: 20),
-                        _buildImageSection(controller),
-                      ],
-                    ),
-                  );
-          },
-        ),
+          ),
+        loading()?LoadingWidget():SizedBox()
+        ],
       ),
     );
   }
@@ -71,6 +80,25 @@ class AddPropertyScreen extends StatelessWidget {
         ),
         Text(
             'Share some of the details related to your property. This helps the user get to know the property a little better'),
+        SizedBox(height: Get.height / 60),
+        DropdownButtonFormField<String>(
+          decoration: InputDecoration(
+            labelStyle: TextStyle(fontSize: 16, color: Colors.black),
+            border: OutlineInputBorder(),
+            labelText: 'Select What You Want To Sell',
+          ),
+          value: controller.selectedProperty!.value,
+          onChanged: (newValue) {
+            controller.selectedProperty!.value = newValue!;
+          },
+          items: controller.properties
+              .map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            );
+          }).toList(),
+        ),
         SizedBox(height: Get.height / 60),
         DropdownButtonFormField<String>(
           decoration: InputDecoration(
@@ -117,18 +145,22 @@ class AddPropertyScreen extends StatelessWidget {
           ),
         ),
         SizedBox(height: Get.height / 80),
-        _buildBedroomWashroomCounter(
-          icon: Icons.bed_outlined,
-          text: 'No. of Bedrooms: ${controller.numberOfBedrooms.value}',
-          onDecrement: controller.decrementBedrooms,
-          onIncrement: controller.incrementBedrooms,
+        Obx(
+          () => _buildBedroomWashroomCounter(
+            icon: Icons.bed_outlined,
+            text: 'No. of Bedrooms: ${controller.numberOfBedrooms.value}',
+            onDecrement: controller.decrementBedrooms,
+            onIncrement: controller.incrementBedrooms,
+          ),
         ),
         SizedBox(height: Get.height / 60),
-        _buildBedroomWashroomCounter(
-          icon: Icons.bathroom_outlined,
-          text: 'No. of Washrooms: ${controller.numberOfWashrooms.value}',
-          onDecrement: controller.decrementWashrooms,
-          onIncrement: controller.incrementWashrooms,
+        Obx(
+          () => _buildBedroomWashroomCounter(
+            icon: Icons.bathroom_outlined,
+            text: 'No. of Washrooms: ${controller.numberOfWashrooms.value}',
+            onDecrement: controller.decrementWashrooms,
+            onIncrement: controller.incrementWashrooms,
+          ),
         ),
         SizedBox(height: Get.height / 60),
         Text(
@@ -186,13 +218,63 @@ class AddPropertyScreen extends StatelessWidget {
           keyboardType: TextInputType.number,
         ),
         SizedBox(height: Get.height / 60),
-        TextField(
-          style: TextStyle(fontWeight: FontWeight.normal, fontSize: 16),
-          controller: controller.locationController,
-          decoration: InputDecoration(
-            labelText: 'Location',
-            labelStyle: TextStyle(fontSize: 16, color: Colors.black),
-            border: OutlineInputBorder(),
+        Obx(() => Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                controller.location.value == 'No location selected'
+                    ? ElevatedButton(
+                        onPressed: () {
+                          controller.getCurrentLocation();
+                          Get.to(() => MapSelectionScreen());
+                        },
+                        child: Text(
+                          "Get Location",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      )
+                    : Column(
+                        children: [
+                          TextField(
+                            style: TextStyle(
+                                fontWeight: FontWeight.normal, fontSize: 16),
+                            controller: controller.locationController,
+                            decoration: InputDecoration(
+                              labelText: 'Location',
+                              labelStyle:
+                                  TextStyle(fontSize: 16, color: Colors.black),
+                              border: OutlineInputBorder(),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              controller.getCurrentLocation();
+                              Get.to(() => MapSelectionScreen());
+                            },
+                            child: Text(
+                              "Get Location Again",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          )
+                        ],
+                      ),
+                SizedBox(height: Get.height / 60),
+              ],
+            )),
+        SizedBox(height: Get.height / 40),
+        Center(
+          child: ElevatedButton(
+            onPressed: controller.submitProperty,
+            child: Text(
+              'Add Property',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ),
       ],
@@ -203,18 +285,24 @@ class AddPropertyScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Obx(() => controller.image == null
+        Obx(() => controller.images.isEmpty
             ? Center(
-                child: Text('No image selected.'),
+                child: Text('No images selected.'),
               )
-            : Image.file(controller.image!)),
+            : Wrap(
+                spacing: 8.0,
+                runSpacing: 8.0,
+                children: controller.images
+                    .map((image) => Image.file(image, width: 100, height: 100))
+                    .toList(),
+              )),
         SizedBox(height: 20),
         SizedBox(
           width: double.infinity,
           child: ElevatedButton(
-            onPressed: controller.pickImage,
+            onPressed: controller.pickImages,
             child: Text(
-              'Select at least One Picture',
+              'Select Pictures',
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 18,
