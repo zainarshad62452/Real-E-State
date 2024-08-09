@@ -3,39 +3,49 @@ import 'package:get/get.dart';
 import 'package:realstate/core/components/snackbar.dart';
 import 'package:realstate/core/routes/app_routes.dart';
 import 'package:realstate/services/Authentication.dart';
+import 'package:realstate/services/user_services.dart';
 
 class SellerLoginModel {}
 
 class SellerLoginController extends GetxController {
-  TextEditingController emailInputController = TextEditingController();
+  final phoneInputController = TextEditingController();
+  var verificationId = ''.obs;
 
-  TextEditingController passwordInputController = TextEditingController();
-
-  Rx<SellerLoginModel> realEstateAppDesigenLoginModelObj =
-      SellerLoginModel().obs;
-
-  @override
-  void onClose() {
-    emailInputController.dispose();
-    passwordInputController.dispose();
-  }
-
-  Future<void> onLoginButtonPressed() async {
-    if (emailInputController.text.isEmpty) {
-      alertSnackbar("Please enter email address!.");
-    } else if (!emailInputController.text.contains('@')) {
-      alertSnackbar("Please enter a valid email address!.");
-    } else if (passwordInputController.text.isEmpty) {
-      alertSnackbar("Please enter password");
+  void onLoginButtonPressed() {
+    final phoneNumber = phoneInputController.text.trim();
+    if (phoneNumber.isNotEmpty) {
+      Authentication().signUpWithPhoneNumber(
+        phoneNumber,
+        (verificationId) {
+          this.verificationId.value = verificationId;
+          snackbar("Success", "OTP sent successfully!.");
+          Get.toNamed(AppRoutes.otpVerificationScreen,
+              arguments: verificationId);
+        },
+      );
     } else {
-      await Authentication().signinWithEmail(
-          emailInputController.text.toString(),
-          passwordInputController.text.toString());
+      Get.snackbar("Error", "Please enter your phone number");
     }
   }
 
-  Future<void> onCreateAccountButtonPressed() async {
-    Get.toNamed(AppRoutes.signupScreen);
+  void onSignUpButtonPressed() {
+    Get.toNamed(AppRoutes.sellerSignupScreen);
+  }
+
+  void verifyOTP(String otp) async {
+    final user = await Authentication()
+        .confirmVerificationCode(verificationId.value, otp);
+    if (user != null) {
+      UserServices().registerUser(
+        name: 'Seller Name',
+        user: user,
+        phoneNumber: user.phoneNumber,
+        userType: 'Seller',
+      );
+      Get.offAllNamed(AppRoutes.sellerDashboard);
+    } else {
+      Get.snackbar("Error", "Invalid OTP");
+    }
   }
 }
 

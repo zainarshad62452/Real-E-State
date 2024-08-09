@@ -7,6 +7,7 @@ import 'package:realstate/view/auth/buyer/signup_screen/signup_controller.dart';
 import 'package:realstate/view/auth/buyer/signup_screen/signup_screen.dart';
 import 'package:realstate/view/auth/seller/login_screen/login_controller.dart';
 import 'package:realstate/view/auth/seller/login_screen/login_screen.dart';
+import 'package:realstate/view/auth/seller/signup_screen/otp_screen.dart';
 import 'package:realstate/view/auth/seller/signup_screen/signup_controller.dart';
 import 'package:realstate/view/auth/seller/signup_screen/signup_screen.dart';
 import 'package:realstate/view/buyer/buying_list/buying_list_screen.dart';
@@ -42,6 +43,7 @@ class AppRoutes {
   static const String sellerLoginScreen = '/seller_login_screen';
   static const String sellerSignupScreen = '/seller_signup_screen';
   static const String emailVerificationScreen = '/email_verfication';
+  static const String otpVerificationScreen = '/otp-verification';
   static const String propertAppHomeScreenPage =
       '/propert_app_home_screen_page';
 
@@ -79,6 +81,11 @@ class AppRoutes {
       name: emailVerificationScreen,
       page: () => EmailVerification(),
       bindings: [],
+    ),
+     GetPage(
+      name: otpVerificationScreen,
+      page: () => OTPVerificationScreen(),
+      bindings: [SellerSignupBinding(),SellerLoginBinding()],
     ),
     GetPage(
       name: initialRoute,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl_phone_number_field/intl_phone_number_field.dart';
 import 'package:realstate/controllers/loading_controller.dart';
 import 'package:realstate/core/components/custom_app_bar.dart';
 import 'package:realstate/core/components/custom_button.dart';
@@ -60,12 +61,6 @@ class SellerSignupScreen extends GetWidget<SellerSignupController> {
       decoration: width == 400 || width == 500
           ? BoxDecoration(
               border: Border.all(color: Colors.black38),
-              // boxShadow: [
-              //     BoxShadow(
-              //         color: Colors.black,
-              //         offset: Offset(0.5, 1.5),
-              //         blurRadius: 0.5)
-              //   ]
             )
           : BoxDecoration(),
       padding: EdgeInsets.symmetric(
@@ -105,36 +100,99 @@ class SellerSignupScreen extends GetWidget<SellerSignupController> {
   }
 
   /// Section Widget
-  Widget _buildFirstNameInput() {
-    return CustomTextField(
-      controller: controller.firstNameInputController,
-      hintText: "Enter your name",
-    );
-  }
-
   Widget _buildPhoneNumberInput() {
-    return CustomTextField(
+    return InternationalPhoneNumberInput(
+      height: 60,
       controller: controller.phoneInputController,
-      hintText: "Enter your phone number",
-      textInputType: TextInputType.phone,
-    );
-  }
-
-  /// Section Widget
-  Widget _buildEmailInput() {
-    return CustomTextField(
-      controller: controller.emailInputController,
-      hintText: "Enter your email",
-      textInputType: TextInputType.emailAddress,
-    );
-  }
-
-  /// Section Widget
-  Widget _buildPasswordInput() {
-    return CustomTextField(
-      controller: controller.passwordInputController,
-      hintText: "Enter your password",
-      isObscure: true,
+      inputFormatters: const [],
+      formatter: MaskedInputFormatter('##########'),
+      initCountry:
+          CountryCodeModel(name: "Pakistan", dial_code: "+92", code: "PK"),
+      betweenPadding: 23,
+      onInputChanged: (phone) {
+        print(phone.code);
+        print(phone.dial_code);
+        print(phone.number);
+        print(phone.rawFullNumber);
+        print(phone.rawNumber);
+        print(phone.rawDialCode);
+      },
+      // loadFromJson: loadFromJson,
+      dialogConfig: DialogConfig(
+        backgroundColor: const Color(0xFF444448),
+        searchBoxBackgroundColor: const Color(0xFF56565a),
+        searchBoxIconColor: const Color(0xFFFAFAFA),
+        countryItemHeight: 55,
+        topBarColor: const Color(0xFF1B1C24),
+        selectedItemColor: const Color(0xFF56565a),
+        selectedIcon: Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child: Image.asset(
+            "assets/check.png",
+            width: 20,
+            fit: BoxFit.fitWidth,
+          ),
+        ),
+        textStyle: TextStyle(
+            color: const Color(0xFFFAFAFA).withOpacity(0.7),
+            fontSize: 14,
+            fontWeight: FontWeight.w600),
+        searchBoxTextStyle: TextStyle(
+            color: const Color(0xFFFAFAFA).withOpacity(0.7),
+            fontSize: 14,
+            fontWeight: FontWeight.w600),
+        titleStyle: const TextStyle(
+            color: Color(0xFFFAFAFA),
+            fontSize: 18,
+            fontWeight: FontWeight.w700),
+        searchBoxHintStyle: TextStyle(
+            color: const Color(0xFFFAFAFA).withOpacity(0.7),
+            fontSize: 14,
+            fontWeight: FontWeight.w600),
+      ),
+      countryConfig: CountryConfig(
+          decoration: BoxDecoration(
+            border: Border.all(width: 2, color: const Color(0xFF3f4046)),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          noFlag: false,
+          textStyle: const TextStyle(
+              color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600)),
+      validator: (number) {
+        if (number.number.isEmpty) {
+          return "The phone number cannot be left emptyssss";
+        }
+        return null;
+      },
+      phoneConfig: PhoneConfig(
+        focusedColor: const Color(0xFF6D59BD),
+        enabledColor: const Color(0xFF6D59BD),
+        errorColor: const Color(0xFFFF5494),
+        labelStyle: null,
+        labelText: null,
+        floatingLabelStyle: null,
+        focusNode: null,
+        radius: 8,
+        hintText: "Phone Number",
+        borderWidth: 2,
+        backgroundColor: Colors.transparent,
+        decoration: null,
+        popUpErrorText: true,
+        autoFocus: false,
+        showCursor: false,
+        textInputAction: TextInputAction.done,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        errorTextMaxLength: 2,
+        errorPadding: const EdgeInsets.only(top: 14),
+        errorStyle:
+            const TextStyle(color: Color(0xFFFF5494), fontSize: 12, height: 1),
+        textStyle: const TextStyle(
+            color: Colors.black, fontSize: 16, fontWeight: FontWeight.w400),
+        hintStyle: TextStyle(
+            color: Colors.black.withOpacity(0.5),
+            fontSize: 16,
+            fontWeight: FontWeight.w400),
+      ),
     );
   }
 
@@ -158,7 +216,7 @@ class SellerSignupScreen extends GetWidget<SellerSignupController> {
           const SizedBox(
             width: 220,
             child: Text(
-              "Don’t have an account Create You're Account",
+              "Don’t have an account? Create Your Account",
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
@@ -171,18 +229,6 @@ class SellerSignupScreen extends GetWidget<SellerSignupController> {
           ),
           const SizedBox(height: 14),
           const Text(
-            "First Name",
-            style: TextStyle(
-              color: Color(0XCC000000),
-              fontSize: 14,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          const SizedBox(height: 4),
-          _buildFirstNameInput(),
-          const SizedBox(height: 16),
-          const Text(
             "Phone Number",
             style: TextStyle(
               color: Color(0XCC000000),
@@ -194,30 +240,6 @@ class SellerSignupScreen extends GetWidget<SellerSignupController> {
           const SizedBox(height: 4),
           _buildPhoneNumberInput(),
           const SizedBox(height: 16),
-          const Text(
-            "Email",
-            style: TextStyle(
-              color: Color(0XCC000000),
-              fontSize: 14,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          const SizedBox(height: 4),
-          _buildEmailInput(),
-          const SizedBox(height: 16),
-          const Text(
-            "Password",
-            style: TextStyle(
-              color: Color(0XCC000000),
-              fontSize: 14,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          const SizedBox(height: 4),
-          _buildPasswordInput(),
-          const SizedBox(height: 12),
         ],
       ),
     );
@@ -227,7 +249,7 @@ class SellerSignupScreen extends GetWidget<SellerSignupController> {
     return CustomButton(
       text: "Sign up",
       onPressed: () {
-        controller.onCreateAccountButtonPressed();
+        controller.onSignUpButtonPressed();
       },
     );
   }

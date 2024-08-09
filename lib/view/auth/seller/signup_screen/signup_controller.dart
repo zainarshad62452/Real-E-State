@@ -3,56 +3,48 @@ import 'package:get/get.dart';
 import 'package:realstate/core/components/snackbar.dart';
 import 'package:realstate/core/routes/app_routes.dart';
 import 'package:realstate/services/Authentication.dart';
-
-class SellerSignupModel {}
+import 'package:realstate/services/user_services.dart';
 
 class SellerSignupController extends GetxController {
-  TextEditingController emailInputController = TextEditingController();
-  TextEditingController phoneInputController = TextEditingController();
-  TextEditingController firstNameInputController = TextEditingController();
+  final phoneInputController = TextEditingController();
+  var verificationId = ''.obs;
 
-  TextEditingController passwordInputController = TextEditingController();
-
-  Rx<SellerSignupModel> realEstateAppDesigenLoginModelObj = SellerSignupModel().obs;
-  var selectedRole = 'Seller'.obs;
-
-  void setRole(String role) {
-    selectedRole.value = role;
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-    emailInputController.dispose();
-    firstNameInputController.dispose();
-    phoneInputController.dispose();
-    passwordInputController.dispose();
-  }
-
-  Future<void> onCreateAccountButtonPressed() async {
-    if (firstNameInputController.text.isEmpty) {
-      alertSnackbar("Please enter your name!.");
-    } else if (emailInputController.text.isEmpty) {
-      alertSnackbar("Please enter email address!.");
-    } else if (!emailInputController.text.contains('@')) {
-      alertSnackbar("Please enter a valid email address!.");
-    } else if (phoneInputController.text.isEmpty) {
-      alertSnackbar("Please enter your phone number!.");
-    } else if (passwordInputController.text.isEmpty) {
-      alertSnackbar("Please enter password");
+  void onSignUpButtonPressed() {
+    final phoneNumber = "+92${phoneInputController.text.trim()}";
+    print("::: phone number $phoneNumber");
+    if (phoneNumber.isNotEmpty) {
+      Authentication().signUpWithPhoneNumber(
+        phoneNumber,
+        (verificationId) {
+          this.verificationId.value = verificationId;
+          snackbar("Success", "OTP sent successfully!.");
+          Get.toNamed(AppRoutes.otpVerificationScreen,
+              arguments: verificationId);
+        },
+      );
     } else {
-      print("::: Selected Role ${selectedRole.value}");
-      await Authentication().createAccount(
-          name: firstNameInputController.text.toString(),
-          email: emailInputController.text.toString(),
-          pass: passwordInputController.text.toString(),
-          phoneNumber: phoneInputController.text.toString(),
-          userType: selectedRole.value);
+      Get.snackbar("Error", "Please enter your phone number");
     }
   }
 
-  Future<void> onLoginButtonPressed() async {
-    Get.offAllNamed(AppRoutes.loginScreen);
+  void onLoginButtonPressed() {
+    Get.toNamed(AppRoutes.loginScreen);
+  }
+
+  void verifyOTP(String otp) async {
+    final user = await Authentication()
+        .confirmVerificationCode(verificationId.value, otp);
+    if (user != null) {
+      UserServices().registerUser(
+        name: 'Seller Name',
+        user: user,
+        phoneNumber: user.phoneNumber,
+        userType: 'Seller',
+      );
+      Get.offAllNamed(AppRoutes.sellerDashboard);
+    } else {
+      Get.snackbar("Error", "Invalid OTP");
+    }
   }
 }
 
@@ -62,4 +54,3 @@ class SellerSignupBinding extends Bindings {
     Get.lazyPut(() => SellerSignupController());
   }
 }
-
