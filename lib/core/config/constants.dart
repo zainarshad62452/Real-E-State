@@ -8,30 +8,14 @@ class AppAssetPaths {
       "https://firebasestorage.googleapis.com/v0/b/truly-one-hifah-technology.appspot.com/o/user.png?alt=media&token=d9e7ee55-4ac5-46ff-8a91-8f57dd28c34c";
 }
 
-// class AssetsImage {
-//   static const iconsPath = "assets/Icons";
-//   static const imagesPath = "assets/Images";
+const String stripePublishableKey =
+    "pk_test_51PlqCMEXAek9Q3ka7XMWnupuCK56U3ozzIF4HOzBchnUNuGkcWnyvucrNckKjN0fYumSPbkSQaPbd5e4UQioSejX00dMIH3VQ0";
+const String stripeSecretKey =
+    "sk_test_51PlqCMEXAek9Q3kavjOQiDdc2WzgTVRl2dDTSRDKzjwc1ExFEfvEXp4z97vR9sinV6o41voodIK8YgrBUnewQbft00AaI8V7h1";
 
-//   static const defaultProfileUrl =
-//       "https://firebasestorage.googleapis.com/v0/b/truly-one-hifah-technology.appspot.com/o/user.png?alt=media&token=d9e7ee55-4ac5-46ff-8a91-8f57dd28c34c";
-//   // PNG Images  Only
-//   static const boyPic = "$imagesPath/boy_pic.png";
-//   static const girlPic = "$imagesPath/girl_pic.png";
 
-//   // SVG Icons Only
-//   static const appIconSVG = "$iconsPath/app_icon.svg";
-//   static const connetSVG = "$iconsPath/connect.svg";
-//   static const plugSVG = "$iconsPath/plug.svg";
+// AIzaSyBgQzk8FxKbNEsNxrT25MGuzUZWE65_byI  // iOS key (auto created by Firebase)
+// AIzaSyCqSz-gQc1MtZojh7AoqULv5xtVe1jp_jY  // Browser key (auto created by Firebase)
+// AIzaSyAjlwPMl_w8T4ogMubk24r5cBrtcueMyS8  // Android key (auto created by Firebase)
 
-//   static const chatStatusSvg = "$iconsPath/chatStatus.svg";
-//   static const chatGallarySvg = "$iconsPath/gallary.svg";
-//   static const chatMicSvg = "$iconsPath/mic.svg";
-//   static const chatEmoji = "$iconsPath/emoji.svg";
 
-//   static const profileVideoCall = "$iconsPath/videoCall.svg";
-//   static const profileAudioCall = "$iconsPath/call.svg";
-//   static const chatSendSvg = "assets/icons/send.svg";
-
-//   static const groupAddUser = "$iconsPath/addUser.svg";
-//   //
-// }

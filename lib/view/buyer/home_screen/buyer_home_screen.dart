@@ -3,8 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:realstate/core/routes/app_routes.dart';
 import 'package:realstate/services/Authentication.dart';
-import 'package:realstate/view/buyer/home_screen/home_screen.dart';
+import 'package:realstate/view/buyer/home_screen/all_properties_for_buyer.dart';
 import 'package:realstate/view/buyer/home_screen/tab_container_controller.dart';
+import 'package:realstate/view/map_sample.dart';
 
 class BuyerHomeScreen extends GetWidget<HomeScreenPageController> {
   const BuyerHomeScreen({Key? key})
@@ -68,7 +69,10 @@ class BuyerHomeScreen extends GetWidget<HomeScreenPageController> {
           Padding(
             padding: EdgeInsets.only(right: 19),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                // StripeService.instance.makePayment(40);
+                Get.to(()=> MapSample());
+              },
               constraints: BoxConstraints(
                 minHeight: 32,
                 minWidth: 32,

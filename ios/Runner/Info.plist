@@ -60,5 +60,7 @@
     <string>This app requires access to the photo library to save and retrieve media files.</string>
     <key>NSPhotoLibraryAddUsageDescription</key>
     <string>This app requires access to the photo library to save media files.</string>
+	<key>NSCameraUsageDescription</key>
+    <string>Scan your card to add it automatically</string>
 </dict>
 </plist>

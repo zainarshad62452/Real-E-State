@@ -29,6 +29,7 @@ class DashboardBinding extends Bindings {
   }
 }
 
+// ignore: must_be_immutable
 class DashboardScreen extends StatelessWidget {
   final BuyerDashboardController controller = Get.put(BuyerDashboardController());
   var hom = Get.put(HomeScreenPageController());

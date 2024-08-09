@@ -1,13 +1,16 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:realstate/controllers/loading_controller.dart';
+import 'package:realstate/core/config/constants.dart';
 import 'package:realstate/core/config/theme/state.dart';
 import 'package:realstate/core/routes/app_routes.dart';
 import 'package:realstate/firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey = stripePublishableKey;
   Get.put(LoadingController());
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
