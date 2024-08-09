@@ -52,6 +52,64 @@ class Authentication {
     }
   }
 
+  // Sign Up with Phone Number
+  Future<void> signUpWithPhoneNumber(
+      String phoneNumber, Function(String) codeSentCallback) async {
+    loading(true);
+    await auth.verifyPhoneNumber(
+      phoneNumber: phoneNumber,
+      verificationCompleted: (PhoneAuthCredential credential) async {
+        loading(false);
+        await auth.signInWithCredential(credential);
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        if (e.code == 'invalid-phone-number') {
+          print('The provided phone number is not valid.');
+        } else {
+          print('Verification failed with error: ${e.message}');
+        }
+        loading(false);
+      },
+      codeSent: (String verificationId, int? resendToken) {
+        codeSentCallback(verificationId);
+        loading(false);
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {
+        loading(false);
+      },
+    );
+  }
+
+  // Log In with Phone Number
+  Future<void> loginWithPhoneNumber(
+      String phoneNumber, Function(String) codeSentCallback) async {
+    await auth.verifyPhoneNumber(
+      phoneNumber: phoneNumber,
+      verificationCompleted: (PhoneAuthCredential credential) async {
+        await auth.signInWithCredential(credential);
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        if (e.code == 'invalid-phone-number') {
+          print('The provided phone number is not valid.');
+        } else {
+          print('Verification failed with error: ${e.message}');
+        }
+      },
+      codeSent: (String verificationId, int? resendToken) {
+        codeSentCallback(verificationId);
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {},
+    );
+  }
+
+  Future<User?> confirmVerificationCode(
+      String verificationId, String smsCode) async {
+    PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: verificationId, smsCode: smsCode);
+    UserCredential userCredential = await auth.signInWithCredential(credential);
+    return userCredential.user;
+  }
+
   Future<String> getEmail(String id, String collection) async {
     return await FirebaseFirestore.instance
         .collection(collection)
